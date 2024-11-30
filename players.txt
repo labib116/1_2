@@ -49,3 +49,4 @@ Harshal Patel,India,33,1.75,Royal Challengers Bangalore,Bowler,,15000000
 Mustafizur Rahman,Bangladesh,29,1.8,Delhi Capitals,Bowler,90,14000000
 Litton Das,Bangladesh,30,1.7,Kolkata Knight Riders,Wicketkeeper,16,10000000
 l,a,10,10.0,b,a,100,1
+a,c,100,1.0,t,w,100,1

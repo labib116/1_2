@@ -4,10 +4,12 @@ import Database.Player;
 import Database.PlayerDatabase;
 
 import java.util.Scanner;
-public class Menu {
+public class Menu extends Printing {
     PlayerDatabase playerDatabase;
     public Menu(PlayerDatabase playerDatabase) {
+        super(playerDatabase);
         this.playerDatabase = playerDatabase;
+
     }
 
 
@@ -40,7 +42,7 @@ public class Menu {
                     System.out.println("Enter the name of the player you want to search:");
                     Scanner sc1=new Scanner(System.in);
                     String name=sc1.nextLine();
-                    playerDatabase.showPlayerInfo(name);
+                    showPlayerInfo(name);
                     break;
                 case 2:
                     System.out.println("Enter the Club & Country of the player you want to search:");
@@ -50,13 +52,13 @@ public class Menu {
                     System.out.println("Country:");
                     String Country=sc2.nextLine();
                     //System.out.println(Club+" "+Country);
-                    playerDatabase.showPlayerInfoByClubAndCountry(Club, Country);
+                    showPlayerInfoByClubAndCountry(Club, Country);
                     break;
                 case 3:
                     System.out.println("Enter the position of the player you want to search:");
                     Scanner sc3=new Scanner(System.in);
                     String position=sc3.nextLine();
-                    playerDatabase.showPlayerInfoByPosition(position);
+                    showPlayerInfoByPosition(position);
                     break;
                 case 4:
                     System.out.println("Enter the salary range of the player you want to search:");
@@ -65,7 +67,7 @@ public class Menu {
                     int min=sc4.nextInt();
                     System.out.println("Maximum Salary:");
                     int max=sc4.nextInt();
-                    playerDatabase.showPlayerInfoBySallaryRange(min, max);
+                    showPlayerInfoBySallaryRange(min, max);
 
                     break;
                 case 5:
@@ -101,25 +103,25 @@ public class Menu {
                     System.out.println("Enter the name of the Club you want to search:");
                     Scanner sc1=new Scanner(System.in);
                     Club=sc1.nextLine();
-                    playerDatabase.show_max_sallary_players(Club);
+                    show_max_sallary_players(Club);
                     break;
                 case 2:
                     System.out.println("Enter the name of the Club you want to search:");
                     Scanner sc2=new Scanner(System.in);
                     Club=sc2.nextLine();
-                    playerDatabase.show_max_age_players(Club);
+                    show_max_age_players(Club);
                     break;
                 case 3:
                     System.out.println("Enter the name of the Club you want to search:");
                     Scanner sc3=new Scanner(System.in);
                     Club=sc3.nextLine();
-                    playerDatabase.show_max_height_players(Club);
+                    show_max_height_players(Club);
                     break;
                 case 4:
                     System.out.println("Enter the name of the Club you want to search:");
                     Scanner sc4=new Scanner(System.in);
                     Club=sc4.nextLine();
-                    playerDatabase.show_total_yearly_sallary(Club);
+                    show_total_yearly_sallary(Club);
                     break;
                 case 5:
                     clubsearchflag=false;

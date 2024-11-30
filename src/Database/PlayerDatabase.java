@@ -1,5 +1,6 @@
 package Database;
 
+import javax.lang.model.type.NullType;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -16,7 +17,13 @@ public class PlayerDatabase{
     public List<Player>newly_added = new ArrayList<>();
     private static final String INPUT_FILE_NAME = "players.txt";
     private static final String OUTPUT_FILE_NAME = "out.txt";
+    public PlayerDatabase(){
 
+    }
+
+    public PlayerDatabase(List<Player> database){
+        this.database = database;
+    }
     private Player extractPlayerInfo(String line) {
         try {
             String[] parts = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
@@ -111,13 +118,13 @@ public class PlayerDatabase{
         add_to_file(newly_added);
     }
 
-    public void printPlayers() {
+    /*public void printPlayers() {
         for (Player p : database) {
             showPlayerInfo(p.getName());
         }
-    }
+    }*/
 
-    private Player findbyName(String name) {
+    public Player findbyName(String name) {
         for (Player p : database) {
             if (name.equalsIgnoreCase(p.getName())) {
                 return p;
@@ -126,18 +133,9 @@ public class PlayerDatabase{
         return null;
     }
 
-    public void showPlayerInfo(String name) {
 
-        if (findbyName(name) != null) {
-            Player p = findbyName(name);
-            System.out.println(p);
-        }
-        else{
-            System.out.println("Player not found");
-        }
-    }
 
-    private List<Player> findbyClubAndCountry(String Club, String Country) {
+    public PlayerDatabase findbyClubAndCountry(String Club, String Country) {
         //System.out.println("Find by Club and Country func called successfully");
         List<Player> result = new ArrayList<>();
         for (Player p : database) {
@@ -155,78 +153,38 @@ public class PlayerDatabase{
         if (result.isEmpty()) {
             System.out.println("No Such Player Available");
         }
-        return result;
+        return new PlayerDatabase(result);
 
     }
-
-    public void showPlayerInfoByClubAndCountry(String Club, String Country) {
-        //System.out.println("Show Database.Database.Player Info func called successfully");
-        List<Player> answer = findbyClubAndCountry(Club, Country);
-        if (!answer.isEmpty()) {
-            //System.out.println("loop started successfully");
-            for (Player p : answer) {
-                //System.out.println("Database.Database.Player name is:" + p.getName());
-                showPlayerInfo(p.getName());
-            }
-        } else {
-            if (answer.isEmpty()) {
-                System.out.println("No Such Player Available");
-            }
-
-        }
+    public List<Player> getDatabase() {
+        return database;
     }
 
-    private List<Player> findbyPosition(String position) {
+
+
+    public PlayerDatabase findbyPosition(String position) {
         List<Player> result = new ArrayList<>();
         for (Player p : database) {
             if (position.equalsIgnoreCase(p.getPosition())) {
                 result.add(p);
             }
         }
-        return result;
+        return new PlayerDatabase(result);
     }
 
-    public void showPlayerInfoByPosition(String position) {
-        List<Player> answer = new ArrayList<>();
-        answer = findbyPosition(position);
-        if (findbyPosition(position) != null) {
 
-            for (Player p : answer) {
-               showPlayerInfo(p.getName());
-            }
-        } else {
-            if (answer.size() == 0) {
-                System.out.println("No Such Player Available");
-            }
 
-        }
-    }
-
-    private List<Player> findbySallaryRange(int start, int end) {
+    public PlayerDatabase findbySallaryRange(int start, int end) {
         List<Player> result = new ArrayList<>();
         for (Player p : database) {
             if (p.getWeekly_salary() >= start && p.getWeekly_salary() <= end) {
                 result.add(p);
             }
         }
-        return result;
+        return new PlayerDatabase(result);
     }
 
-    public void showPlayerInfoBySallaryRange(int start, int end) {
-        List<Player> answer = new ArrayList<>();
-        answer = findbySallaryRange(start, end);
-        if (!answer.isEmpty()) {
 
-            answer.sort((p1, p2) -> p1.getWeekly_salary() - p2.getWeekly_salary());
-            for (Player p : answer) {
-                showPlayerInfo(p.getName());
-            }
-        } else {
-            if (answer.size() == 0) {
-                System.out.println("No Such Player Available");
-            }
-        }
-    }
 
     public void showByCountry() {
         HashMap<String, Integer> countryCount = new HashMap<>();
@@ -238,7 +196,7 @@ public class PlayerDatabase{
             System.out.println("Country: " + entry.getKey() + ", Players: " + entry.getValue());
         }
     }
-    private List<Player>find_max_sallary_players(String Club) {
+    public PlayerDatabase find_max_sallary_players(String Club) {
         List<Player> result = new ArrayList<>();
         int max_sallary = 0;
         for (Player p : database) {
@@ -252,20 +210,11 @@ public class PlayerDatabase{
             }
 
         }
-        return result;
-    }
-    public void show_max_sallary_players(String Club) {
-        List<Player> answer = new ArrayList<>();
-        answer= find_max_sallary_players(Club);
-        if (!answer.isEmpty()) {
-            for (Player p : answer) {
-
-                System.out.println(p);
-        }
-        }
+        return new PlayerDatabase(result);
     }
 
-    private List<Player>findMaxHeight(String Club){
+
+    public PlayerDatabase findMaxHeight(String Club){
         List<Player>answer=new ArrayList<>();
         double max_height = 0;
         for (Player p : database) {
@@ -278,16 +227,10 @@ public class PlayerDatabase{
                 answer.add(p);
             }
         }
-        return answer;
+        return new PlayerDatabase(answer);
     }
-    public void show_max_height_players(String Club) {
-        List<Player>answer=new ArrayList<>();
-        answer = findMaxHeight(Club);
-        for (Player p : answer) {
-            showPlayerInfo(p.getName());
-        }
-    }
-    private List<Player>findMaxAge(String Club){
+
+    public PlayerDatabase findMaxAge(String Club){
         List<Player>answer=new ArrayList<>();
         int max_age = 0;
         for (Player p : database) {
@@ -300,27 +243,7 @@ public class PlayerDatabase{
                 answer.add(p);
             }
         }
-        return answer;
-    }
-    public void show_max_age_players(String Club) {
-       List<Player>answer=new ArrayList<>();
-       answer = findMaxAge(Club);
-       for (Player p : answer) {
-           showPlayerInfo(p.getName());
-       }
+        return new PlayerDatabase(answer);
     }
 
-    public void show_total_yearly_sallary(String Club) {
-        int total_sallary = 0;
-        for (Player p : database) {
-            if (Club.equalsIgnoreCase(p.getClub())) {
-                total_sallary += p.getWeekly_salary() * 52;
-            }
-        }
-        if (total_sallary == 0) {
-            System.out.println("No Such Club Available");
-        } else {
-            System.out.println("Total Yearly Sallary of " + Club + " is " + total_sallary);
-        }
-    }
 }
