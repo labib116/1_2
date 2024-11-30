@@ -71,17 +71,17 @@ public class Player {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Database.Player name: ").append(getName()).append("\n");
-        sb.append("Database.Player Country: ").append(getCountry()).append("\n");
-        sb.append("Database.Player Age: ").append(getAge()).append("\n");
-        sb.append("Database.Player Height: ").append(getHeight()).append("\n");
-        sb.append("Database.Player Club: ").append(getClub()).append("\n");
-        sb.append("Database.Player Position: ").append(getPosition()).append("\n");
+        sb.append("Player name: ").append(getName()).append("\n");
+        sb.append("Player Country: ").append(getCountry()).append("\n");
+        sb.append("Player Age: ").append(getAge()).append("\n");
+        sb.append("Player Height: ").append(getHeight()).append("\n");
+        sb.append("Player Club: ").append(getClub()).append("\n");
+        sb.append("Player Position: ").append(getPosition()).append("\n");
 
         if (getNumber() == -1) {
-            sb.append("Database.Player Jersey Number: Not Available").append("\n");
+            sb.append("Player Jersey Number: Not Available").append("\n");
         } else {
-            sb.append("Database.Player Jersey Number: ").append(getNumber()).append("\n");
+            sb.append("Player Jersey Number: ").append(getNumber()).append("\n");
         }
 
         sb.append("Weekly Salary: ").append(getWeekly_salary()).append("\n");
