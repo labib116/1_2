@@ -85,17 +85,18 @@ public class PlayerDatabase{
             System.out.println("Player not added");
         }
 
-        String text = p.getName() + "," + p.getCountry() + "," + p.getAge() + "," + p.getHeight() + "," + p.getClub() + "," + p.getPosition() + "," + p.getNumber() + "," + p.getWeekly_salary();
+       /* String text = p.getName() + "," + p.getCountry() + "," + p.getAge() + "," + p.getHeight() + "," + p.getClub() + "," + p.getPosition() + "," + p.getNumber() + "," + p.getWeekly_salary();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(INPUT_FILE_NAME, true))) {
             bw.write(text);
             bw.newLine();
         } catch (Exception e) {
             System.err.println("Error while writing to the file: " + e.getMessage());
             e.printStackTrace();
-        }
+        }*/
     }
     public void add_to_file(List<Player> players) {
         for (Player p : players) {
+
             String text = p.getName() + "," + p.getCountry() + "," + p.getAge() + "," + p.getHeight() + "," + p.getClub() + "," + p.getPosition() + "," + p.getNumber() + "," + p.getWeekly_salary();
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(INPUT_FILE_NAME, true))) {
                 bw.write(text);
