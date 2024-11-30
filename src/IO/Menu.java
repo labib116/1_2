@@ -32,7 +32,7 @@ public class Menu {
             System.out.println("3.Search by position");
             System.out.println("4.Search by player's salary range");
             System.out.println("5.Country wise player count");
-            System.out.println("6.Back to IO.MainMenu");
+            System.out.println("6.Back to MainMenu");
             Scanner sc=new Scanner(System.in);
             int choice=sc.nextInt();
             switch (choice) {
@@ -88,11 +88,11 @@ public class Menu {
         boolean clubsearchflag=true;
         while(clubsearchflag){
             System.out.println("Club Searching options:");
-            System.out.println("1. Database.Database.Player with the maximum salary in a club");
-            System.out.println("2. Database.Database.Player with the maximum age of a club");
-            System.out.println("3. Database.Database.Player with the maximum height of a club");
+            System.out.println("1. Player with the maximum salary in a club");
+            System.out.println("2. Player with the maximum age of a club");
+            System.out.println("3. Player with the maximum height of a club");
             System.out.println("4.Total yearly salary of a club");
-            System.out.println("5.Back to Main IO.Menu");
+            System.out.println("5.Back to Main Menu");
             String Club;
             Scanner sc=new Scanner(System.in);
             int choice=sc.nextInt();

@@ -74,7 +74,7 @@ public class PlayerDatabase{
             //System.out.println(p.getName() + " added to the database");
             for (Player i : database) {
                 if (i.getName().equalsIgnoreCase(p.getName())) {
-                    System.out.println("Database.Player already exists");
+                    System.out.println("Player already exists");
                     return;
                 }
             }
@@ -82,7 +82,7 @@ public class PlayerDatabase{
             newly_added.add(p);
             playercount++;
         } else {
-            System.out.println("Database.Player not added");
+            System.out.println("Player not added");
         }
 
         String text = p.getName() + "," + p.getCountry() + "," + p.getAge() + "," + p.getHeight() + "," + p.getClub() + "," + p.getPosition() + "," + p.getNumber() + "," + p.getWeekly_salary();
@@ -132,7 +132,7 @@ public class PlayerDatabase{
             System.out.println(p);
         }
         else{
-            System.out.println("Database.Player not found");
+            System.out.println("Player not found");
         }
     }
 
@@ -152,7 +152,7 @@ public class PlayerDatabase{
 
         }
         if (result.isEmpty()) {
-            System.out.println("No Such Database.Player Available");
+            System.out.println("No Such Player Available");
         }
         return result;
 
@@ -169,7 +169,7 @@ public class PlayerDatabase{
             }
         } else {
             if (answer.isEmpty()) {
-                System.out.println("No Such Database.Player Available");
+                System.out.println("No Such Player Available");
             }
 
         }
@@ -195,7 +195,7 @@ public class PlayerDatabase{
             }
         } else {
             if (answer.size() == 0) {
-                System.out.println("No Such Database.Player Available");
+                System.out.println("No Such Player Available");
             }
 
         }
@@ -222,7 +222,7 @@ public class PlayerDatabase{
             }
         } else {
             if (answer.size() == 0) {
-                System.out.println("No Such Database.Player Available");
+                System.out.println("No Such Player Available");
             }
         }
     }
@@ -237,8 +237,8 @@ public class PlayerDatabase{
             System.out.println("Country: " + entry.getKey() + ", Players: " + entry.getValue());
         }
     }
-
-    public void show_max_sallary_players(String Club) {
+    private List<Player>find_max_sallary_players(String Club) {
+        List<Player> result = new ArrayList<>();
         int max_sallary = 0;
         for (Player p : database) {
             if (p.getWeekly_salary() > max_sallary && Club.equalsIgnoreCase(p.getClub())) {
@@ -247,8 +247,20 @@ public class PlayerDatabase{
         }
         for (Player p : database) {
             if (p.getWeekly_salary() == max_sallary && Club.equalsIgnoreCase(p.getClub())) {
-                showPlayerInfo(p.getName());
+                result.add(p);
             }
+
+        }
+        return result;
+    }
+    public void show_max_sallary_players(String Club) {
+        List<Player> answer = new ArrayList<>();
+        answer= find_max_sallary_players(Club);
+        if (!answer.isEmpty()) {
+            for (Player p : answer) {
+
+                System.out.println(p);
+        }
         }
     }
 
