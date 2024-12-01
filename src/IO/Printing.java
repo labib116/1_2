@@ -3,6 +3,7 @@ import Database.Player;
 import Database.PlayerDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Printing {
@@ -90,20 +91,24 @@ public class Printing {
         }
     }
     public void show_total_yearly_sallary(String Club) {
-        int total_sallary = 0;
-        List<Player> answer = new ArrayList<>();
-        answer=printdatabase.getDatabase();
-        for (Player p : answer) {
-            if (Club.equalsIgnoreCase(p.getClub())) {
-                total_sallary += p.getWeekly_salary() * 52;
-            }
-        }
-        if (total_sallary == 0) {
-            System.out.println("No Such Club Available");
-        } else {
-            System.out.println("Total Yearly Sallary of " + Club + " is " + total_sallary);
+       long total_sallary= printdatabase.find_total_sallary(Club);
+       if(total_sallary>0){
+           System.out.println("Total Sallary: "+total_sallary);
+       }
+       else {
+           System.out.println("No Such Club Available");
+       }
+    }
+    public void show_by_country() {
+        // Assuming printdatabase.findByCountry() returns a HashMap<String, Integer>
+        HashMap<String, Integer> answer = printdatabase.findByCountry();
+
+        // Iterate through the HashMap and print the key-value pairs
+        for (HashMap.Entry<String, Integer> entry : answer.entrySet()) {
+            System.out.println("Country: " + entry.getKey() + ", Value: " + entry.getValue());
         }
     }
-
-
 }
+
+
+

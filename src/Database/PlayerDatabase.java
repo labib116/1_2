@@ -186,15 +186,13 @@ public class PlayerDatabase{
 
 
 
-    public void showByCountry() {
+    public HashMap<String,Integer> findByCountry() {
         HashMap<String, Integer> countryCount = new HashMap<>();
 
         for (Player p : database) {
             countryCount.put(p.getCountry(), countryCount.getOrDefault(p.getCountry(), 0) + 1);
         }
-        for (Map.Entry<String, Integer> entry : countryCount.entrySet()) {
-            System.out.println("Country: " + entry.getKey() + ", Players: " + entry.getValue());
-        }
+        return countryCount;
     }
     public PlayerDatabase find_max_sallary_players(String Club) {
         List<Player> result = new ArrayList<>();
@@ -244,6 +242,16 @@ public class PlayerDatabase{
             }
         }
         return new PlayerDatabase(answer);
+    }
+    public long find_total_sallary(String Club){
+        long  total_sallary = 0;
+        //List<Player> answer = new ArrayList<>();
+        for (Player p : database) {
+            if (Club.equalsIgnoreCase(p.getClub())) {
+                total_sallary += p.getWeekly_salary() * 52;
+            }
+        }
+        return total_sallary;
     }
 
 }

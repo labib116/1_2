@@ -28,7 +28,7 @@ public class Menu extends Printing {
 
         boolean playersearchflag=true;
         while(playersearchflag){
-            System.out.println("Database.Player Searching options:");
+            System.out.println("Player Searching options:");
             System.out.println("1. Search by name");
             System.out.println("2.Search by Club & Country");
             System.out.println("3.Search by position");
@@ -71,7 +71,7 @@ public class Menu extends Printing {
 
                     break;
                 case 5:
-                    playerDatabase.showByCountry();
+                    show_by_country();
                     break;
                 case 6:
                     //load();
@@ -153,7 +153,14 @@ public class Menu extends Printing {
         String position=sc6.nextLine();
         System.out.println("Jersey Number:");
         Scanner sc7=new Scanner(System.in);
-        int number=sc7.nextInt();
+        String s=sc7.nextLine();
+        int number;
+        if(s.equalsIgnoreCase("")){
+            number=-1;
+        }
+        else{
+            number=Integer.parseInt(s);
+        }
         System.out.println("Weekly Salary:");
         Scanner sc8=new Scanner(System.in);
         int weeklySalary=sc8.nextInt();
