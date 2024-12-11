@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.PlayerSearchController">
+   <children>
+      <AnchorPane prefHeight="658.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="BacktoMainMenuButton" layoutX="255.0" layoutY="556.0" mnemonicParsing="false" onAction="#BacktoMainMenuButtonPressed" prefHeight="35.0" prefWidth="116.0" text="Back to MainMenu" />
+            <Button fx:id="CountrywisePlayerCountButton" layoutX="224.0" layoutY="466.0" mnemonicParsing="false" onAction="#CountrywisePlayerCountButtonPressed" prefHeight="41.0" prefWidth="159.0" text="Countrywise Player Count" />
+            <Button fx:id="SallaryRangeButton" layoutX="220.0" layoutY="379.0" mnemonicParsing="false" onAction="#SallaryRangeButtonPressed" prefHeight="41.0" prefWidth="159.0" text="Search By Sallary Range" />
+            <Button fx:id="PositionSearchButton" layoutX="237.0" layoutY="294.0" mnemonicParsing="false" onAction="#PositionSearchButtonPressed" prefHeight="41.0" prefWidth="125.0" text="Search by Position" />
+            <Button fx:id="ClubandCOuntrySearchButton" layoutX="210.0" layoutY="196.0" mnemonicParsing="false" onAction="#ClubandCOuntrySearchButtonPressed" prefHeight="41.0" prefWidth="179.0" text="Search By Club and Country" />
+            <Button fx:id="NameSearchButton" layoutX="242.0" layoutY="109.0" mnemonicParsing="false" onAction="#NameSearchButtonPressed" prefHeight="41.0" prefWidth="116.0" text="Search By Name" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

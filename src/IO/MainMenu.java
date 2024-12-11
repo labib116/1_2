@@ -3,6 +3,7 @@ package IO;
 import Database.Player;
 import Database.PlayerDatabase;
 public class MainMenu {
+    
     public static void main(String[] args) {
         PlayerDatabase playerDatabase = new PlayerDatabase();
         playerDatabase.load();
