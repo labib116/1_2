@@ -1,23 +1,112 @@
 package FXIO;
 
+import Networking.ReadThread;
+import Networking.SocketWrapper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
+import Database.PlayerDatabase;
 import java.io.IOException;
 import java.util.Objects;
+import Database.Player;
 
 public class LoginApp extends Application {
+    private Stage primaryStage;
+    public static PlayerDatabase playerDatabase = new PlayerDatabase();
+    private SocketWrapper socketWrapper;
+    public SocketWrapper getSocketWrapper() {
+        return socketWrapper;
+    }
+
+    public void showLoginPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("login.fxml"));
+        Parent root = loader.load();
+
+        // Loading the controller
+        LoginController controller = loader.getController();
+        controller.setMain(this);
+
+        // Set the primary stage
+         primaryStage.setTitle("Login");
+         primaryStage.setScene(new Scene(root));
+         primaryStage.show();
+
+    }
+    public void showMainMenu(String username) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainMenu.fxml")));
+        //Stage primaryStage = new Stage();
+        primaryStage.setTitle("Main Menu");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public void showPlayerSearch() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
+        //Stage primaryStage = new Stage();
+        primaryStage.setTitle("Player Search");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public void showClubSearch() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClubSearch.fxml")));
+        //Stage primaryStage = new Stage();
+        primaryStage.setTitle("Club Search");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public void showAddPlayer() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AddPlayer.fxml")));
+        //Stage primaryStage = new Stage();
+        primaryStage.setTitle("Add Player");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public void showMaxSallary() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MaxSallary.fxml")));
+        //Stage primaryStage = new Stage();
+        primaryStage.setTitle("Max Sallary");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public void showTotalSallary() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("TotalSallary.fxml")));
+        //Stage primaryStage = new Stage();
+        primaryStage.setTitle("Total Sallary");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public void connectToServer() throws IOException {
+        String serverAddress = "127.0.0.1";
+        int serverPort = 33333;
+        socketWrapper = new SocketWrapper(serverAddress, serverPort);
+        new ReadThread(this);
+    }
+    public void showAlert() {
+        // Alert the user that the username and password are incorrect
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Incorrect Credentials");
+        alert.setHeaderText("Incorrect Credentials");
+        alert.setContentText("The username and password you provided is not correct.");
+        alert.showAndWait();
+    }
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
-            primaryStage.setTitle("Login");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
+            this.primaryStage=primaryStage;
+            connectToServer();
+            showLoginPage();
+            //showMainMenu();
+            //showPlayerSearch();
+            //showClubSearch();
+            //showAddPlayer();
+            //showMaxSallary();
+            //showTotalSallary();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -25,5 +114,9 @@ public class LoginApp extends Application {
 
     public static void main(String[] args) {
         launch(args); // Launch the JavaFX application
+        playerDatabase.load();
+        playerDatabase.printDatabase();
     }
+
+
 }

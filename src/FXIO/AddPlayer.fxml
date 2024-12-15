@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="928.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.AddPlayer">
+   <children>
+      <AnchorPane prefHeight="930.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="266.0" layoutY="317.0" text="Enter Height" />
+            <Label layoutX="263.0" layoutY="131.0" text="Enter Country" />
+            <TextField fx:id="PlayerNameField" layoutX="225.0" layoutY="79.0" />
+            <Label layoutX="236.0" layoutY="50.0" text="Enter Player's Name" />
+            <TextField fx:id="CountryField" layoutX="225.0" layoutY="164.0" />
+            <Label layoutX="274.0" layoutY="223.0" text="Enter Age" />
+            <TextField fx:id="AgeField" layoutX="225.0" layoutY="261.0" />
+            <TextField fx:id="HeightField" layoutX="225.0" layoutY="355.0" />
+            <Label layoutX="251.0" layoutY="417.0" text="Enter Club's Name" />
+            <TextField fx:id="ClubField" layoutX="225.0" layoutY="461.0" />
+            <Label layoutX="262.0" layoutY="522.0" text="Enter Position" />
+            <TextField fx:id="PositionField" layoutX="225.0" layoutY="557.0" />
+            <Label layoutX="244.0" layoutY="616.0" text="Enter Jersey Number" />
+            <TextField fx:id="JerseyField" layoutX="225.0" layoutY="658.0" />
+            <Label layoutX="245.0" layoutY="706.0" text="Enter Weekly Sallary" />
+            <TextField fx:id="WeeklySallaryField" layoutX="224.0" layoutY="751.0" />
+            <Button fx:id="AddButton" layoutX="273.0" layoutY="819.0" mnemonicParsing="false" onAction="#AddButtonPressed" text="Add" />
+            <Button fx:id="BackButton" layoutX="29.0" layoutY="79.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

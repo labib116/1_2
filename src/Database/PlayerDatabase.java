@@ -18,6 +18,28 @@ public class PlayerDatabase{
     private static final String INPUT_FILE_NAME = "players.txt";
     private static final String OUTPUT_FILE_NAME = "out.txt";
     public PlayerDatabase(){
+        try (BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE_NAME))) {
+            String line;
+
+            // Read each line until the end of the file
+            while ((line = br.readLine()) != null) {
+                // Extract player information from the line
+                Player player = extractPlayerInfo(line);
+
+                // Add the player to the database if parsing was successful
+                if (player != null) {
+                    database.add(player);
+                    //System.out.println("Added player: " + player.getName());
+                } else {
+                    System.err.println("Failed to add player from line: " + line);
+                }
+            }
+
+        } catch (Exception e) {
+            // Handle exceptions like file not found or read errors
+            System.err.println("Error while creating the database: " + e.getMessage());
+            e.printStackTrace();
+        }
 
     }
 
@@ -252,6 +274,11 @@ public class PlayerDatabase{
             }
         }
         return total_sallary;
+    }
+    public void printDatabase() {
+        for (Player p : database) {
+            System.out.println(p);
+        }
     }
 
 }

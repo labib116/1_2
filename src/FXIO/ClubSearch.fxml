@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.ClubSearch">
+   <children>
+      <AnchorPane prefHeight="496.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="MaxSallaryButton" layoutX="164.0" layoutY="68.0" mnemonicParsing="false" onAction="#MaxSallaryButtonPressed" prefHeight="41.0" prefWidth="247.0" text="Players with Maximum Sallary of a Club" />
+            <Button fx:id="MaxHeightButton" layoutX="175.0" layoutY="248.0" mnemonicParsing="false" onAction="#MaxHeightButtonPressed" prefHeight="41.0" prefWidth="239.0" text="Players with Maximum Height of a Club" />
+            <Button fx:id="MaxAgeButton" layoutX="175.0" layoutY="161.0" mnemonicParsing="false" onAction="#MaxAgeButtonPressed" prefHeight="41.0" prefWidth="225.0" text="Players with Maximum Age of a Club" />
+            <Button fx:id="TotalSallaryButton" layoutX="211.0" layoutY="337.0" mnemonicParsing="false" onAction="#TotalSallaryButtonPressed" prefHeight="41.0" prefWidth="167.0" text="Total Sallary of a Club" />
+            <Button fx:id="MainMenuButton" layoutX="258.0" layoutY="430.0" mnemonicParsing="false" onAction="#MainMenuButtonPressed" text="MainMenu" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

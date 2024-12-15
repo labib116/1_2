@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="864.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.MaxAge">
+    <children>
+        <AnchorPane prefHeight="643.0" prefWidth="715.0">
+            <children>
+                <Label layoutX="335.0" layoutY="81.0" text="Enter Club's Name:">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="ClubNameField" layoutX="348.0" layoutY="141.0" />
+                <Button fx:id="SearchButton" layoutX="397.0" layoutY="213.0" mnemonicParsing="false" onAction="#SearchButtonPressed" text="Search" />
+                <TableView fx:id="MaxAgePlayers" layoutY="277.0" prefHeight="588.0" prefWidth="903.0">
+                    <columns>
+                        <TableColumn fx:id="NameColumn" prefWidth="122.66668951511383" text="Player Name" />
+                        <TableColumn fx:id="CountryColumn" minWidth="15.0" prefWidth="101.99999237060547" text="Country" />
+                        <TableColumn fx:id="AgeColumn" prefWidth="43.33331298828125" text="Age" />
+                        <TableColumn fx:id="HeightColumn" prefWidth="76.6666259765625" text="Height" />
+                        <TableColumn fx:id="ClubColumn" prefWidth="163.33331298828125" text="Club" />
+                        <TableColumn fx:id="PositionColumn" prefWidth="116.00006103515625" text="Position" />
+                        <TableColumn fx:id="JerseyNumberColumn" minWidth="6.6666259765625" prefWidth="111.33331298828125" text="Jersey Number" />
+                        <TableColumn fx:id="WeeklySalaryColumn" prefWidth="170.6666259765625" text="Weekly Sallary" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

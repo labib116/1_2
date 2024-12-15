@@ -51,3 +51,4 @@ Litton Das,Bangladesh,30,1.7,Kolkata Knight Riders,Wicketkeeper,16,10000000
 l,a,10,1.0,b,bowler,10,1000000
 labib,bd,10,1.0,csk,bowler,100,1000000
 r,q,10,15.0,v,bowler,100,1
+risalat,Bangladesh,21,1.7,KKR,Bowler,10,120000
