@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="847.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.NameSearch">
+   <children>
+      <AnchorPane prefHeight="848.0" prefWidth="706.0">
+         <children>
+            <Label layoutX="132.0" layoutY="92.0" text="Enter Player's Name:">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="NameInputField" layoutX="420.0" layoutY="99.0" promptText="Name" />
+            <AnchorPane layoutX="-10.0" layoutY="209.0" prefHeight="720.0" prefWidth="715.0">
+               <children>
+                  <TextField fx:id="NameField" layoutX="328.0" layoutY="76.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="105.0" layoutY="74.0" text="Name: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="CountryField" layoutX="328.0" layoutY="136.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="105.0" layoutY="132.0" text="Country: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="105.0" layoutY="199.0" text="Age:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="AgeField" layoutX="328.0" layoutY="201.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="104.0" layoutY="258.0" text="Height:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="HeightField" layoutX="328.0" layoutY="260.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="104.0" layoutY="319.0" text="Club Name:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ClubField" layoutX="328.0" layoutY="321.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="104.0" layoutY="384.0" text="Position:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="PositionField" layoutX="328.0" layoutY="384.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="100.0" layoutY="440.0" text="Jersey Number:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="JerseyNumberField" layoutX="328.0" layoutY="442.0" prefHeight="25.0" prefWidth="219.0" />
+                  <Label layoutX="102.0" layoutY="500.0" text="WeekLy Salary:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="WeeklySalaryField" layoutX="328.0" layoutY="502.0" prefHeight="25.0" prefWidth="219.0" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="BackButton" layoutX="22.0" layoutY="39.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
+            <Button fx:id="SearchButton" layoutX="327.0" layoutY="173.0" mnemonicParsing="false" onAction="#SearchButtonPressed" text="Search" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

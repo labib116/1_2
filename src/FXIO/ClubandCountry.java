@@ -9,20 +9,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class SallaryRange {
+public class ClubandCountry {
+
+    //public TableView ClubandCountryPlayers;
     @FXML
-    public TextField minimum_sallary;
+    public TextField Club;
     @FXML
-    public TextField maximum_sallary;
-    @FXML
-    public TableView<Player> SallaryRangePlayers;
+    public Button Search;
+    public TableView<Player> ClubandCountryPlayers;
     @FXML
     public TableColumn<Player, String> NameColumn;
     @FXML
@@ -39,6 +44,8 @@ public class SallaryRange {
     public TableColumn<Player, String> JerseyNumberColumn;
     @FXML
     public TableColumn<Player, Integer> WeeklySalaryColumn;
+    @FXML
+    public TextField Country;
 
     @FXML
     public void initialize() {
@@ -56,27 +63,22 @@ public class SallaryRange {
         WeeklySalaryColumn.setCellValueFactory(new PropertyValueFactory<>("weekly_salary"));
     }
 
-    public void SearchButtonPressed(ActionEvent actionEvent) {
+    public void SearchPressed(ActionEvent actionEvent) {
         try {
-            int min_sallary = Integer.parseInt(minimum_sallary.getText().trim());
-            int max_sallary = Integer.parseInt(maximum_sallary.getText().trim());
-
-            if (min_sallary > max_sallary) {
-                throw new IllegalArgumentException("Minimum salary cannot be greater than maximum salary.");
-            }
-
-            PlayerDatabase players = LoginApp.playerDatabase.findbySallaryRange(min_sallary, max_sallary);
+            String Club= this.Club.getText();
+            String Country = this.Country.getText();
+            PlayerDatabase players = LoginApp.playerDatabase.findbyClubAndCountry(Club,Country);
             List<Player> answers = players.getDatabase();
-            SallaryRangePlayers.getItems().clear();
-            SallaryRangePlayers.setItems(FXCollections.observableList(answers));
+            ClubandCountryPlayers.getItems().clear();
+            ClubandCountryPlayers.setItems(FXCollections.observableList(answers));
         } catch (NumberFormatException e) {
-            System.out.println("Invalid salary input. Please enter valid numbers.");
+            System.out.println("Invalid Input");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void BackButtonPressed(ActionEvent actionEvent) throws IOException {
+    public void BackbuttonPressed(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

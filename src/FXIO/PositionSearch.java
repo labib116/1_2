@@ -17,13 +17,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class SallaryRange {
+public class PositionSearch {
     @FXML
-    public TextField minimum_sallary;
+    public TextField position;
+
     @FXML
-    public TextField maximum_sallary;
-    @FXML
-    public TableView<Player> SallaryRangePlayers;
+    public TableView<Player> PositionPlayers;
     @FXML
     public TableColumn<Player, String> NameColumn;
     @FXML
@@ -40,7 +39,6 @@ public class SallaryRange {
     public TableColumn<Player, String> JerseyNumberColumn;
     @FXML
     public TableColumn<Player, Integer> WeeklySalaryColumn;
-
     @FXML
     public void initialize() {
         NameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -57,32 +55,30 @@ public class SallaryRange {
         WeeklySalaryColumn.setCellValueFactory(new PropertyValueFactory<>("weekly_salary"));
     }
 
+
     public void SearchButtonPressed(ActionEvent actionEvent) {
         try {
-            int min_sallary = Integer.parseInt(minimum_sallary.getText().trim());
-            int max_sallary = Integer.parseInt(maximum_sallary.getText().trim());
+            String position= this.position.getText();
 
-            if (min_sallary > max_sallary) {
-                throw new IllegalArgumentException("Minimum salary cannot be greater than maximum salary.");
-            }
 
-            PlayerDatabase players = LoginApp.playerDatabase.findbySallaryRange(min_sallary, max_sallary);
+
+            PlayerDatabase players = LoginApp.playerDatabase.findbyPosition(position);
             List<Player> answers = players.getDatabase();
-            SallaryRangePlayers.getItems().clear();
-            SallaryRangePlayers.setItems(FXCollections.observableList(answers));
+            PositionPlayers.getItems().clear();
+            PositionPlayers.setItems(FXCollections.observableList(answers));
         } catch (NumberFormatException e) {
             System.out.println("Invalid salary input. Please enter valid numbers.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        
     }
 
-    public void BackButtonPressed(ActionEvent actionEvent) throws IOException {
+    public void BackPressed(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("PlayerSearch");
     }
-
 }

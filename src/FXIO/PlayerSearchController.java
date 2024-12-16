@@ -60,12 +60,32 @@ public class PlayerSearchController {
         stage.setTitle("Sallary Range");
     }
 
-    public void PositionSearchButtonPressed(ActionEvent actionEvent) {
+    public void PositionSearchButtonPressed(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PositionSearch.fxml")));
+        Scene scene = new Scene(root);
+        //Stage stage = (Stage) ((Event) actionEvent).getSource();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Position wise Players");
+
     }
 
-    public void ClubandCOuntrySearchButtonPressed(ActionEvent actionEvent) {
+    public void ClubandCOuntrySearchButtonPressed(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClubandCountry.fxml")));
+        Scene scene = new Scene(root);
+        //Stage stage = (Stage) ((Event) actionEvent).getSource();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Club and Country wise Players");
     }
 
-    public void NameSearchButtonPressed(ActionEvent actionEvent) {
+    public void NameSearchButtonPressed(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("NameSearch.fxml")));
+        Scene scene = new Scene(root);
+        //Stage stage = (Stage) ((Event) actionEvent).getSource();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Searching PLayers by Name");
+
     }
 }
