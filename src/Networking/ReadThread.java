@@ -1,6 +1,7 @@
 package Networking;
 
 import DTO.LoginDTO;
+import DTO.SellRequest;
 import FXIO.LoginApp;
 import javafx.application.Platform;
 
@@ -35,7 +36,21 @@ public class ReadThread implements Runnable {
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
-                                } else {
+                                }
+                                else if (o instanceof SellRequest) {
+                                    // Handle SellRequest and update UI
+                                    SellRequest sellRequest = (SellRequest) o;
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // Handle SellRequest (e.g., update labels, show alert)
+                                            System.out.println("Received SellRequest for " + sellRequest.getPlayerName());
+                                            // For example, update a UI label:
+                                           // main.updateSellStatus(sellRequest.getPlayerName(), sellRequest.getClubName());
+                                        }
+                                    });
+                                }
+                                else {
                                     main.showAlert();
                                 }
 

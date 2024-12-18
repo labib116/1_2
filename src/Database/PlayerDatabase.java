@@ -205,6 +205,15 @@ public class PlayerDatabase{
         }
         return new PlayerDatabase(result);
     }
+    public PlayerDatabase findbyClub(String Club){
+        List<Player> result = new ArrayList<>();
+        for (Player p : database) {
+            if (Club.equalsIgnoreCase(p.getClub())) {
+                result.add(p);
+            }
+        }
+        return new PlayerDatabase(result);
+    }
 
 
 

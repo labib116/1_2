@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,13 +16,20 @@ import java.util.Objects;
 import static FXIO.LoginApp.playerDatabase;
 
 public class MainMenuController {
+    public Button TransfermarketButton;
+    public Button PLayerSearchButton;
+    public Button ClubSearchButton;
+    public Button AddPlayerButton;
+    public Button ExitButton;
+    //public static int index=0;
+    private LoginApp main;
     @FXML
     public void onHighScoreButtonClick(ActionEvent actionEvent) {
         System.out.println("High Score Button Pressed");
     }
 
-    public void TransferMarketButtonPressed(ActionEvent actionEvent) {
-        System.out.println("Transfer Market Button Pressed");
+    public void TransferMarketButtonPressed(ActionEvent actionEvent) throws IOException {
+        main.showTransferMarket();
     }
 
     public void PlayerSearchButtonPressed(ActionEvent actionEvent) throws IOException {
@@ -57,5 +65,8 @@ public class MainMenuController {
         System.out.println("Exit Button Pressed");
         playerDatabase.exit();
         System.exit(0);
+    }
+    public void setMain(LoginApp main) {
+        this.main = main;
     }
 }

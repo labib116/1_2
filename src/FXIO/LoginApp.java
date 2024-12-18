@@ -37,11 +37,19 @@ public class LoginApp extends Application {
 
     }
     public void showMainMenu(String username) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainMenu.fxml")));
-        //Stage primaryStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("MainMenu.fxml"));
+        Parent root = loader.load();
+
+        // Loading the controller
+        MainMenuController controller = loader.getController();
+        controller.setMain(this);
+
+        // Set the primary stage
         primaryStage.setTitle("Main Menu");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
     }
     public void showPlayerSearch() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
@@ -92,6 +100,20 @@ public class LoginApp extends Application {
         alert.setContentText("The username and password you provided is not correct.");
         alert.showAndWait();
     }
+    public void showTransferMarket() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("TransferMarket.fxml"));
+        Parent root = loader.load();
+
+        // Loading the controller
+        TransferMarket controller = loader.getController();
+        controller.setMain(this);
+
+        // Set the primary stage
+        primaryStage.setTitle("Transfer Market");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -99,14 +121,6 @@ public class LoginApp extends Application {
             this.primaryStage=primaryStage;
             connectToServer();
             showLoginPage();
-            //showMainMenu();
-            //showPlayerSearch();
-            //showClubSearch();
-            //showAddPlayer();
-            //showMaxSallary();
-            //showTotalSallary();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

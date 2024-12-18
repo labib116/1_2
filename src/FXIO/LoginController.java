@@ -16,7 +16,7 @@ import static FXIO.LoginApp.playerDatabase;
 
 public class LoginController {
     private LoginApp main;
-
+    public static String LoginClub;;
     @FXML
     private TextField NameField;
 
@@ -52,6 +52,7 @@ public class LoginController {
             stage.setTitle("New Scene");*/
             LoginDTO loginDTO = new LoginDTO();
             loginDTO.setUserName(NameField.getText());
+            LoginClub = NameField.getText();
             loginDTO.setPassword(PasswordField.getText());
             main.getSocketWrapper().write(loginDTO);
         } catch (IOException e) {
