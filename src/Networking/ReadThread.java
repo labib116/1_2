@@ -1,5 +1,6 @@
 package Networking;
 
+import DTO.BuyRequest;
 import DTO.LoginDTO;
 import DTO.SellRequest;
 import FXIO.LoginApp;
@@ -24,43 +25,31 @@ public class ReadThread implements Runnable {
                 if (o != null) {
                     if (o instanceof LoginDTO) {
                         LoginDTO loginDTO = (LoginDTO) o;
-                        System.out.println(loginDTO.getUserName());
-                        System.out.println(loginDTO.isStatus());
-                        // the following is necessary to update JavaFX UI components from user created threads
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (loginDTO.isStatus()) {
-                                    try {
-                                        main.showMainMenu(loginDTO.getUserName());
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
+                        Platform.runLater(() -> {
+                            if (loginDTO.isStatus()) {
+                                try {
+                                    main.showMainMenu(loginDTO.getUserName());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
-                                else if (o instanceof SellRequest) {
-                                    // Handle SellRequest and update UI
-                                    SellRequest sellRequest = (SellRequest) o;
-                                    Platform.runLater(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            // Handle SellRequest (e.g., update labels, show alert)
-                                            System.out.println("Received SellRequest for " + sellRequest.getPlayerName());
-                                            // For example, update a UI label:
-                                           // main.updateSellStatus(sellRequest.getPlayerName(), sellRequest.getClubName());
-                                        }
-                                    });
-                                }
-                                else {
-                                    main.showAlert();
-                                }
-
+                            } else {
+                                main.showAlert();
                             }
                         });
+                    } else if (o instanceof SellRequest sellRequest) {
+                        BuyRequest buyRequest = new BuyRequest();
+                        buyRequest.setPlayerName(sellRequest.getPlayerName());
+                        buyRequest.setClubName(sellRequest.getClubName());
+                        buyRequest.setPrice(sellRequest.getPrice());
+                        main.buyRequests.add(buyRequest);
+                        for(BuyRequest br:main.buyRequests){
+                            System.out.println(br.getPlayerName());
+                        }
                     }
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error in ReadThread: " + e.getMessage());
         } finally {
             try {
                 main.getSocketWrapper().closeConnection();
@@ -70,6 +59,3 @@ public class ReadThread implements Runnable {
         }
     }
 }
-
-
-

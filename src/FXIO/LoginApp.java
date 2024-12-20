@@ -1,5 +1,7 @@
 package FXIO;
 
+import DTO.BuyRequest;
+import DTO.SellRequest;
 import Networking.ReadThread;
 import Networking.SocketWrapper;
 import javafx.application.Application;
@@ -10,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import Database.PlayerDatabase;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import Database.Player;
 
@@ -17,6 +21,8 @@ public class LoginApp extends Application {
     private Stage primaryStage;
     public static PlayerDatabase playerDatabase = new PlayerDatabase();
     private SocketWrapper socketWrapper;
+    public List<SellRequest> sellRequests=new ArrayList<>();
+    public List<BuyRequest>buyRequests=new ArrayList<>();
     public SocketWrapper getSocketWrapper() {
         return socketWrapper;
     }

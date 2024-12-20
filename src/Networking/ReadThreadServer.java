@@ -39,8 +39,9 @@ public class ReadThreadServer implements Runnable {
                         SellRequest sellRequest = (SellRequest) o;
                         PlayerMap.put(sellRequest.getPlayerName(),sellRequest.getClubName());
                         for(SocketWrapper client:clientList){
-                            if(client!=socketWrapper)
+                            if(client!=socketWrapper){System.out.println("Sell request forwarded");
                             client.write(sellRequest);
+                            }
                         }
 
                     }

@@ -1,28 +1,27 @@
 package DTO;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class SellRequest implements Serializable {
+public class BuyRequest {
     private String playerName;
     private String clubName;
     private int price;
-
-    public String getPlayerName() {
-        return playerName;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SellRequest that = (SellRequest) o;
+        BuyRequest that = (BuyRequest) o;
         return Objects.equals(playerName, that.playerName) &&
-                Objects.equals(clubName, that.clubName) && Objects.equals(price, that.price);
+                Objects.equals(clubName, that.clubName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerName, clubName,price);
+        return Objects.hash(playerName, clubName);
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
     public void setPlayerName(String playerName) {
