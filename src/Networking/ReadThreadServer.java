@@ -1,5 +1,6 @@
 package Networking;
 
+import DTO.BuyConfirmation;
 import DTO.LoginDTO;
 import DTO.SellRequest;
 
@@ -14,12 +15,14 @@ public class ReadThreadServer implements Runnable {
     public HashMap<String, String> userMap;
     public HashMap<String,String>PlayerMap=new HashMap<>();
     public List<SocketWrapper> clientList=new ArrayList<>();
+    public HashMap<SocketWrapper,String>clientMap=new HashMap<>();
 
-    public ReadThreadServer(HashMap<String, String> map, SocketWrapper socketWrapper,List clientList) {
+    public ReadThreadServer(HashMap<String, String> map, SocketWrapper socketWrapper,List clientList,HashMap<SocketWrapper,String>clientMap) {
         this.userMap = map;
         this.socketWrapper = socketWrapper;
         this.thr = new Thread(this);
         this.clientList = clientList;
+        this.clientMap = clientMap;
         thr.start();
     }
 
@@ -32,6 +35,13 @@ public class ReadThreadServer implements Runnable {
                         LoginDTO loginDTO = (LoginDTO) o;
                         String password = userMap.get(loginDTO.getUserName());
                         loginDTO.setStatus(loginDTO.getPassword().equals(password));
+                        System.out.println("Adding to clientMap: " + socketWrapper);
+                        synchronized (clientMap){
+                        clientMap.put(socketWrapper,loginDTO.getUserName());
+                        }
+                        System.out.println("clientMap contents: " + clientMap);
+                        System.out.println("Login Successful for: " + loginDTO.getUserName());
+                        System.out.println("Login Successful");
                         socketWrapper.write(loginDTO);
                     }
                     if(o instanceof SellRequest){
@@ -44,6 +54,14 @@ public class ReadThreadServer implements Runnable {
                             }
                         }
 
+                    }
+                    if(o instanceof BuyConfirmation){
+                        System.out.println("Buy Confirmation Received");
+                        BuyConfirmation buyConfirmation = (BuyConfirmation) o;
+                        for(SocketWrapper client:clientList){
+                            System.out.println("Buy Confirmation forwarded");
+                            client.write(buyConfirmation);
+                        }
                     }
                 }
             }

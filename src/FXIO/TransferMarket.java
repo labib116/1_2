@@ -1,5 +1,6 @@
 package FXIO;
 
+import DTO.BuyConfirmation;
 import DTO.BuyRequest;
 import DTO.SellRequest;
 import Database.Player;
@@ -38,8 +39,8 @@ public class TransferMarket implements Initializable {
     public Button SellNext;
     private static int index=0;
     private int buyIndex=0;
-    static List<Player> sellables=LoginApp.playerDatabase.findbyClub(LoginClub).getDatabase();
-    static List<Player> buyables=new ArrayList<>();
+    public static List<Player> sellables=LoginApp.playerDatabase.findbyClub(LoginClub).getDatabase();
+    public static List<Player> buyables=new ArrayList<>();
     public Button BuyPrevious;
     private LoginApp main;
 
@@ -55,19 +56,30 @@ public class TransferMarket implements Initializable {
     }
 
     private void updateSellablePlayer() {
-        SellName.setText(sellables.get(index).getName());
-        SellClub.setText(sellables.get(index).getClub());
-        SellSalary.setText(String.valueOf(sellables.get(index).getWeekly_salary()));
+        if(sellables.isEmpty()){
+            SellName.clear();
+            SellClub.clear();
+            SellSalary.clear();
+            return;
+        }
+        else{
+            SellName.setText(sellables.get(index).getName());
+            SellClub.setText(sellables.get(index).getClub());
+            SellSalary.setText(String.valueOf(sellables.get(index).getWeekly_salary()));
+        }
+
     }
     private void updateBuyablePlayer() {
-        BuyRequest buyRequest = main.buyRequests.get(buyIndex);
-        if (buyRequest!= null) {
-            BuyName.setText(buyables.get(index).getName());
-            BuyClub.setText(buyables.get(index).getClub());
-            BuySalary.setText(String.valueOf(buyables.get(index).getWeekly_salary()));
-        } else {
-            //clearBuyablePlayer();
-            System.out.println("No player found at index: " + index);
+        if(!buyables.isEmpty()) {
+            BuyRequest buyRequest = main.buyRequests.get(buyIndex);
+            if (buyRequest != null) {
+                BuyName.setText(buyables.get(index).getName());
+                BuyClub.setText(buyables.get(index).getClub());
+                BuySalary.setText(String.valueOf(buyables.get(index).getWeekly_salary()));
+            } else {
+                //clearBuyablePlayer();
+                System.out.println("No player found at index: " + index);
+            }
         }
     }
 
@@ -106,6 +118,23 @@ public class TransferMarket implements Initializable {
     }
 
     public void BackButtonPressed(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("MainMenu.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            MainMenuController controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Main Menu");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void SellPreviousBUttonPressed(ActionEvent actionEvent) {
@@ -126,26 +155,45 @@ public class TransferMarket implements Initializable {
 
     public void SellButtonPressed(ActionEvent actionEvent) {
         try {
+            if (!sellables.isEmpty()) {
+                if (index < sellables.size() - 1 && sellables.size() > 1) {
+                    SellName.clear();
+                    SellClub.clear();
+                    SellSalary.clear();
+                    SellName.setText(sellables.get(index + 1).getName());
+                    SellClub.setText(sellables.get(index + 1).getClub());
+                    SellSalary.setText(String.valueOf(sellables.get(index + 1).getWeekly_salary()));
+                    SellRequest sellRequest = new SellRequest();
+                    sellRequest.setPlayerName(sellables.get(index).getName());
+                    sellRequest.setClubName(LoginClub);
+                    sellRequest.setPrice(sellables.get(index).getWeekly_salary());
+                    if (main.sellRequests.contains(sellRequest)) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information");
+                        alert.setHeaderText("Player Already in Sell Request");
+                        alert.setContentText("The player you are trying to sell is already in the sell request list.");
+                        alert.showAndWait();
+                        return;
+                    } else {
+                        main.sellRequests.add(sellRequest);
+                        main.getSocketWrapper().write(sellRequest);
+                    }
+                }
+                if(sellables.size()==1){
+                    SellName.clear();
+                    SellClub.clear();
+                    SellSalary.clear();
+                    SellRequest sellRequest = new SellRequest();
+                    sellRequest.setPlayerName(sellables.get(index).getName());
+                    sellRequest.setClubName(LoginClub);
+                    sellRequest.setPrice(sellables.get(index).getWeekly_salary());
+                    main.sellRequests.add(sellRequest);
+                    main.getSocketWrapper().write(sellRequest);
+                }
 
-            SellRequest sellRequest = new SellRequest();
-            sellRequest.setPlayerName(sellables.get(index).getName());
-            sellRequest.setClubName(LoginClub);
-            sellRequest.setPrice(sellables.get(index).getWeekly_salary());
-            if(main.sellRequests.contains(sellRequest)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setHeaderText("Player Already in Sell Request");
-                alert.setContentText("The player you are trying to sell is already in the sell request list.");
-                alert.showAndWait();
-                return;
+
             }
-            else{
-                main.sellRequests.add(sellRequest);
-                main.getSocketWrapper().write(sellRequest);
-            }
-
-
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -172,24 +220,68 @@ public class TransferMarket implements Initializable {
     public void refresh() {
         sellables = LoginApp.playerDatabase.findbyClub(LoginClub).getDatabase();
         buyables.clear(); // Clear previous entries
+        buyIndex = 0; // Reset index
+        index = 0; // Reset sellables index
 
         for (BuyRequest player : main.buyRequests) {
-            System.out.println("Processing BuyRequest for player: " + player.getPlayerName());
             Player foundPlayer = LoginApp.playerDatabase.findbyName(player.getPlayerName());
-
             if (foundPlayer != null) {
                 buyables.add(foundPlayer);
-            } else {
-                System.out.println("Player not found: " + player.getPlayerName());
             }
         }
         updateBuyablePlayer();
         updateSellablePlayer();
-
     }
+
 
 
     public void RefreshButtonPressed(ActionEvent actionEvent) {
         refresh();
+    }
+
+    public void BuyButtonPressed(ActionEvent actionEvent) {
+        try{
+            if(!buyables.isEmpty()){
+                if(buyIndex<buyables.size()-1 && buyables.size()>1){
+                    BuyName.clear();
+                    BuyClub.clear();
+                    BuySalary.clear();
+                    if(buyIndex+1<buyables.size()) {
+                        BuyName.setText(buyables.get(buyIndex + 1).getName());
+                        BuyClub.setText(buyables.get(buyIndex + 1).getClub());
+                        BuySalary.setText(String.valueOf(buyables.get(buyIndex + 1).getWeekly_salary()));
+                    }
+                    Player player = buyables.get(buyIndex);
+                    LoginApp.playerDatabase.RemovePlayer(player.getName());
+                    String previousClub = player.getClub();
+                    player.setClub(LoginClub);
+                    LoginApp.playerDatabase.addPlayer(player);
+                    BuyConfirmation buyConfirmation = new BuyConfirmation();
+                    buyConfirmation.setPlayerName(player.getName());
+                    buyConfirmation.setPreviousClubName(previousClub);
+                    buyConfirmation.setNewClubName(LoginClub);
+                    main.buyRequests.remove(player);
+                    main.getSocketWrapper().write(buyConfirmation);
+                }
+                if(buyables.size()==1){
+                    BuyName.clear();
+                    BuyClub.clear();
+                    BuySalary.clear();
+                    Player player = buyables.get(buyIndex);
+                    LoginApp.playerDatabase.RemovePlayer(player.getName());
+                    String previousClub = player.getClub();
+                    player.setClub(LoginClub);
+                    LoginApp.playerDatabase.addPlayer(player);
+                    BuyConfirmation buyConfirmation = new BuyConfirmation();
+                    buyConfirmation.setPlayerName(player.getName());
+                    buyConfirmation.setPreviousClubName(previousClub);
+                    buyConfirmation.setNewClubName(LoginClub);
+                    main.buyRequests.remove(player);
+                    main.getSocketWrapper().write(buyConfirmation);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

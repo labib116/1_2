@@ -154,6 +154,14 @@ public class PlayerDatabase{
         }
         return null;
     }
+    public void RemovePlayer(String name) {
+        for (Player p : database) {
+            if (name.equalsIgnoreCase(p.getName())) {
+                database.remove(p);
+                return;
+            }
+        }
+    }
 
 
 

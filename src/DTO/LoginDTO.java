@@ -31,4 +31,8 @@ public class LoginDTO implements Serializable {
     private String userName;
     private String password;
     private boolean status;
+
+    public boolean getStatus() {
+        return status;
+    }
 }

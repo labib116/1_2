@@ -11,6 +11,7 @@ public class Server {
     private ServerSocket serverSocket;
     public HashMap<String, String> userMap=new HashMap<>();
     List<SocketWrapper>clientList=new ArrayList<>();
+    HashMap<SocketWrapper,String>clientMap=new HashMap<>();
 
     Server() {
         userMap = new HashMap<>();
@@ -38,7 +39,7 @@ public class Server {
     public void serve(Socket clientSocket) throws IOException {
         SocketWrapper socketWrapper = new SocketWrapper(clientSocket);
         clientList.add(socketWrapper);
-        new ReadThreadServer(userMap, socketWrapper,clientList);
+        new ReadThreadServer(userMap, socketWrapper,clientList,clientMap);
     }
 
     public static void main(String[] args) {
