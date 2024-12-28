@@ -47,49 +47,5 @@ Ishan Kishan,India,26,1.68,Mumbai Indians,Wicketkeeper,23,20000000
 Lockie Ferguson,New Zealand,33,1.85,Kolkata Knight Riders,Bowler,69,17500000
 Harshal Patel,India,33,1.75,Royal Challengers Bangalore,Bowler,,15000000
 Mustafizur Rahman,Bangladesh,29,1.8,Delhi Capitals,Bowler,90,14000000
-Litton Das,Bangladesh,30,1.7,Kolkata Knight Riders,Wicketkeeper,16,10000000Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Axar Patel,India,30,1.83,Chennai Super Kings,Allrounder,20,17500000
-David Warner,Australia,37,1.7,Chennai Super Kings,Batsman,31,15000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Axar Patel,India,30,1.83,Chennai Super Kings,Allrounder,20,17500000
-David Warner,Australia,37,1.7,Chennai Super Kings,Batsman,31,15000000
-Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-MS Dhoni,India,43,1.78,Chennai Super Kings,Wicketkeeper,7,20000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Jasprit Bumrah,India,30,1.78,Mumbai Indians,Bowler,93,17500000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Tim David,Australia,28,1.96,Delhi Capitals,Allrounder,21,15000000
-Axar Patel,India,30,1.83,Chennai Super Kings,Allrounder,20,17500000
-Axar Patel,India,30,1.83,Chennai Super Kings,Allrounder,20,17500000
-David Warner,Australia,37,1.7,Chennai Super Kings,Batsman,31,15000000
-David Warner,Australia,37,1.7,Chennai Super Kings,Batsman,31,15000000
+Litton Das,Bangladesh,30,1.7,Kolkata Knight Riders,Wicketkeeper,16,10000000
+
