@@ -2,74 +2,53 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.TransferMarket">
-   <children>
-      <AnchorPane prefHeight="365.0" prefWidth="554.0">
-         <children>
-            <Label layoutX="30.0" layoutY="40.0" prefHeight="47.0" prefWidth="174.0" text="Player's Name:">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="BuyName" layoutX="322.0" layoutY="51.0" />
-            <Label layoutX="30.0" layoutY="115.0" prefHeight="47.0" prefWidth="174.0" text="Player's Club:">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="BuyClub" layoutX="322.0" layoutY="126.0" />
-            <Label layoutX="30.0" layoutY="204.0" prefHeight="47.0" prefWidth="257.0" text="Player's Weekly Salary:">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="BuySalary" layoutX="322.0" layoutY="215.0" />
-            <Button fx:id="BuyButton" layoutX="215.0" layoutY="290.0" mnemonicParsing="false" onAction="#BuyButtonPressed" prefHeight="35.0" prefWidth="103.0" text="Buy" />
-            <Button fx:id="BuyNext" layoutX="408.0" layoutY="290.0" mnemonicParsing="false" onAction="#BuyNextPressed" prefHeight="35.0" prefWidth="103.0" text="Next" />
-            <Button fx:id="BuyPrevious" layoutX="30.0" layoutY="290.0" mnemonicParsing="false" onAction="#BuyPreviousPressed" prefHeight="35.0" prefWidth="103.0" text="Previous" />
-            <Button fx:id="BacButton" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
-            <Label layoutX="204.0" layoutY="11.0" text="Buy Market">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="RefreshButton" layoutX="486.0" layoutY="13.0" mnemonicParsing="false" onAction="#RefreshButtonPressed" text="Refresh" />
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="381.0" prefWidth="554.0">
-         <children>
-            <Label layoutX="19.0" layoutY="51.0" prefHeight="47.0" prefWidth="174.0" text="Player's Name:">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="SellName" layoutX="341.0" layoutY="62.0" />
-            <Label layoutX="19.0" layoutY="147.0" prefHeight="47.0" prefWidth="174.0" text="Player's Club:">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="SellClub" layoutX="341.0" layoutY="147.0" />
-            <Label layoutX="19.0" layoutY="222.0" prefHeight="47.0" prefWidth="257.0" text="Player's Weekly Salary:">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="SellSalary" layoutX="341.0" layoutY="233.0" />
-            <Button fx:id="SellPrevious" layoutX="23.0" layoutY="308.0" mnemonicParsing="false" onAction="#SellPreviousBUttonPressed" prefHeight="35.0" prefWidth="103.0" text="Previous" />
-            <Button fx:id="SellButton" layoutX="225.0" layoutY="308.0" mnemonicParsing="false" onAction="#SellButtonPressed" prefHeight="35.0" prefWidth="103.0" text="Sell" />
-            <Button fx:id="SellNext" layoutX="409.0" layoutY="307.0" mnemonicParsing="false" onAction="#SellNextPressed" prefHeight="35.0" prefWidth="103.0" text="Next" />
-            <Label layoutX="217.0" layoutY="14.0" text="Sell Market">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
+    <children>
+        <!-- Buy Table Section -->
+        <AnchorPane prefHeight="360.0" prefWidth="554.0">
+            <children>
+                <Label layoutX="215.0" layoutY="10.0" text="Buy Market">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="BuyTable" layoutX="30.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0">
+                    <columns>
+                        <TableColumn fx:id="BuyPlayerNameColumn" prefWidth="200.0" text="Player Name" />
+                        <TableColumn fx:id="BuyClubColumn" prefWidth="150.0" text="Club" />
+                        <TableColumn fx:id="BuySalaryColumn" prefWidth="100.0" text="Weekly Salary" />
+                        <TableColumn fx:id="BuyActionColumn" prefWidth="50.0" text="Action" />
+                    </columns>
+                </TableView>
+                <Button fx:id="RefreshBuyButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#RefreshBuyButtonPressed" text="Refresh" />
+            <Button fx:id="Back" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
+            </children>
+        </AnchorPane>
+
+        <!-- Sell Table Section -->
+        <AnchorPane prefHeight="360.0" prefWidth="554.0">
+            <children>
+                <Label layoutX="215.0" layoutY="10.0" text="Sell Market">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="SellTable" layoutX="30.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0">
+                    <columns>
+                        <TableColumn fx:id="SellPlayerNameColumn" prefWidth="200.0" text="Player Name" />
+                        <TableColumn fx:id="SellClubColumn" prefWidth="150.0" text="Club" />
+                        <TableColumn fx:id="SellSalaryColumn" prefWidth="100.0" text="Weekly Salary" />
+                        <TableColumn fx:id="SellActionColumn" prefWidth="50.0" text="Action" />
+                    </columns>
+                </TableView>
+                <Button fx:id="RefreshSellButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#RefreshSellButtonPressed" text="Refresh" />
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>
