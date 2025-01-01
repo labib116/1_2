@@ -4,6 +4,7 @@ import Database.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -39,6 +40,7 @@ public class AddPlayer {
     public TextField WeeklySallaryField;
     @FXML
     public Button AddButton;
+    private LoginApp main;
 
     public void AddButtonPressed(ActionEvent actionEvent) {
         String playerName = PlayerNameField.getText();
@@ -77,11 +79,26 @@ public class AddPlayer {
     }
 
     public void BackButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainMenu.fxml")));
-        Scene scene = new Scene(root);
-        //Stage stage = (Stage) ((Event) actionEvent).getSource();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Main Menu");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("MainMenu.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            MainMenuController controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Main Menu");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void setMain(LoginApp main) {
+        this.main = main;
     }
 }

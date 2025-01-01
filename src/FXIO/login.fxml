@@ -2,20 +2,20 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.LoginController">
    <children>
       <AnchorPane prefHeight="398.0" prefWidth="600.0">
          <children>
             <TextField fx:id="NameField" alignment="TOP_CENTER" layoutX="225.0" layoutY="134.0" />
-            <TextField fx:id="PasswordField" layoutX="224.0" layoutY="264.0" />
-            <Label layoutX="227.0" layoutY="104.0" text="Enter your CLub Name here" />
+            <Label layoutX="227.0" layoutY="104.0" text="Enter your Club Name here" />
             <Label layoutX="231.0" layoutY="225.0" text="Enter Your Password Here" />
             <Button fx:id="LoginButton" layoutX="275.0" layoutY="339.0" mnemonicParsing="false" onAction="#LoginButtonPressed" text="Login" />
+            <PasswordField fx:id="PasswordField" layoutX="233.0" layoutY="265.0" />
          </children>
       </AnchorPane>
    </children>

@@ -33,31 +33,67 @@ public class MainMenuController {
     }
 
     public void PlayerSearchButtonPressed(ActionEvent actionEvent) throws IOException {
-        System.out.println("Player Search Button Pressed");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Player Search");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("PlayerSearch.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            PlayerSearchController controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Player Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void ClubSearchButtonPressed(ActionEvent actionEvent) throws IOException {
-        System.out.println("Club Search Button Pressed");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClubSearch.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Club Search");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ClubSearch.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            ClubSearch controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Club Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void AddPlayerButtonPressed(ActionEvent actionEvent) throws IOException {
-        System.out.println("Add Player Button Pressed");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AddPlayer.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Add Player");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("AddPlayer.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            AddPlayer controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Add Player");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

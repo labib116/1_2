@@ -26,7 +26,6 @@
                         <TableColumn fx:id="BuyActionColumn" prefWidth="50.0" text="Action" />
                     </columns>
                 </TableView>
-                <Button fx:id="RefreshBuyButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#RefreshBuyButtonPressed" text="Refresh" />
             <Button fx:id="Back" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
             </children>
         </AnchorPane>
@@ -47,7 +46,6 @@
                         <TableColumn fx:id="SellActionColumn" prefWidth="50.0" text="Action" />
                     </columns>
                 </TableView>
-                <Button fx:id="RefreshSellButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#RefreshSellButtonPressed" text="Refresh" />
             </children>
         </AnchorPane>
     </children>

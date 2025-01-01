@@ -6,11 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MaxSallary {
@@ -34,6 +40,7 @@ public class MaxSallary {
     public TableColumn WeeklySalaryColumn;
     @FXML
     public TableView MaxSalaryPlayers;
+    private LoginApp main;
 
     @FXML
     public void initialize() {
@@ -54,5 +61,29 @@ public class MaxSallary {
         List<Player>MaxSallaryPlayers=max_sallary.getDatabase();
         ObservableList<Player> data = FXCollections.observableList(MaxSallaryPlayers);
         MaxSalaryPlayers.setItems(data);
+    }
+    public void setMain(LoginApp main) {
+        this.main = main;
+    }
+
+    public void BackButtonPressed(ActionEvent actionEvent) {
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ClubSearch.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            ClubSearch controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Club Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

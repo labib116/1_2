@@ -32,6 +32,7 @@
                         <TableColumn fx:id="WeeklySalaryColumn" prefWidth="170.6666259765625" text="Weekly Sallary" />
                     </columns>
                 </TableView>
+            <Button fx:id="BackButton" layoutX="36.0" layoutY="35.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
             </children>
         </AnchorPane>
     </children>

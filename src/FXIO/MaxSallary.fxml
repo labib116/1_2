@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox prefHeight="864.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.MaxSallary">
    <children>
       <AnchorPane prefHeight="643.0" prefWidth="715.0">
@@ -33,6 +32,7 @@
                   <TableColumn fx:id="WeeklySalaryColumn" prefWidth="170.6666259765625" text="Weekly Sallary" />
               </columns>
             </TableView>
+            <Button fx:id="BackButton" layoutX="34.0" layoutY="28.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
          </children>
       </AnchorPane>
    </children>

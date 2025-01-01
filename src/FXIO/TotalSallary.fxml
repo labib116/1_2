@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.TotalSallary">
    <children>
       <Button fx:id="SearchButton" contentDisplay="CENTER" layoutX="250.0" layoutY="187.0" mnemonicParsing="false" onAction="#SearchButtonPressed" prefHeight="25.0" prefWidth="105.0" text="Search" textAlignment="CENTER" />
@@ -22,5 +21,6 @@
             <Font size="24.0" />
          </font>
       </TextArea>
+      <Button fx:id="BackButton" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
    </children>
 </AnchorPane>

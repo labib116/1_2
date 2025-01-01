@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -28,13 +29,27 @@ public class PlayerSearchController {
     private Button NameSearchButton;
     @FXML
     private Button BacktoMainMenuButton;
+    private LoginApp main;
+
     public void BacktoMainMenuButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainMenu.fxml")));
-        Scene scene = new Scene(root);
-        //Stage stage = (Stage) ((Event) actionEvent).getSource();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Main Menu");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("MainMenu.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            MainMenuController controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Main Menu");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -52,40 +67,92 @@ public class PlayerSearchController {
         alert.showAndWait();
     }
     public void SallaryRangeButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SallaryRange.fxml")));
-        Scene scene = new Scene(root);
-        //Stage stage = (Stage) ((Event) actionEvent).getSource();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Sallary Range");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("SallaryRange.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            SallaryRange controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Sallary Range");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void PositionSearchButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PositionSearch.fxml")));
-        Scene scene = new Scene(root);
-        //Stage stage = (Stage) ((Event) actionEvent).getSource();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Position wise Players");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("PositionSearch.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            PositionSearch controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Position Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void ClubandCOuntrySearchButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClubandCountry.fxml")));
-        Scene scene = new Scene(root);
-        //Stage stage = (Stage) ((Event) actionEvent).getSource();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Club and Country wise Players");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ClubandCountry.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            ClubandCountry controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Club and Country Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void NameSearchButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("NameSearch.fxml")));
-        Scene scene = new Scene(root);
-        //Stage stage = (Stage) ((Event) actionEvent).getSource();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Searching PLayers by Name");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("NameSearch.fxml"));
+            Parent root = loader.load();
 
+            // Loading the controller
+            NameSearch controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Name Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setMain(LoginApp main) {
+        this.main=main;
     }
 }

@@ -4,6 +4,7 @@ import DTO.BuyConfirmation;
 import DTO.BuyRequest;
 import DTO.SellRequest;
 import Database.Player;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,9 +56,10 @@ public class TransferMarket implements Initializable {
     private static int sellIndex = 0;
     private static int buyIndex = 0;
 
-    public static List<Player> sellables = LoginApp.playerDatabase.findbyClub(LoginClub).getDatabase();
+    public static List<Player> sellables = new ArrayList<>();
     public static List<Player> buyables = new ArrayList<>();
-
+    private Thread autoRefreshThread;
+    private volatile boolean keepRefreshing = true;
     private LoginApp main;
 
     @Override
@@ -65,6 +67,7 @@ public class TransferMarket implements Initializable {
         sellables = LoginApp.playerDatabase.findbyClub(LoginClub).getDatabase();
         initializeSellTable();
         initializeBuyTable();
+        startAutoRefreshBuy();
         //refresh();
     }
 
@@ -139,7 +142,8 @@ public class TransferMarket implements Initializable {
                 main.sellRequests.add(sellRequest);
                 main.getSocketWrapper().write(sellRequest);
                 sellables.remove(player);
-                refresh();
+                //main.sellRequests.remove(sellRequest);
+                refreshSell();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,19 +154,15 @@ public class TransferMarket implements Initializable {
         try {
             String previousClub = player.getClub();
             player.setClub(LoginClub);
-
             BuyConfirmation buyConfirmation = new BuyConfirmation();
             buyConfirmation.setPlayerName(player.getName());
             buyConfirmation.setPreviousClubName(previousClub);
             buyConfirmation.setNewClubName(LoginClub);
-
             LoginApp.playerDatabase.RemovePlayer(player.getName());
             LoginApp.playerDatabase.addPlayer(player);
-
             main.buyRequests.removeIf(request -> request.getPlayerName().equals(player.getName()));
             main.getSocketWrapper().write(buyConfirmation);
             buyables.remove(player);
-
             refresh();
         } catch (IOException e) {
             e.printStackTrace();
@@ -193,6 +193,44 @@ public class TransferMarket implements Initializable {
         SellTable.setItems(javafx.collections.FXCollections.observableArrayList(sellables));
         BuyTable.setItems(javafx.collections.FXCollections.observableArrayList(buyables));
     }
+    private void startAutoRefreshBuy() {
+        autoRefreshThread = new Thread(() -> {
+            while (keepRefreshing) {
+                try {
+                    Platform.runLater(this::refreshbuy); // Run the UI update on JavaFX Application Thread
+                    Thread.sleep(1000); // Wait for 1 second
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        autoRefreshThread.setDaemon(true); // Set the thread as a daemon thread to terminate with the application
+        autoRefreshThread.start();
+    }
+    public void stopAutoRefreshBuy() {
+        keepRefreshing = false; // Signal the thread to stop
+        if (autoRefreshThread != null && autoRefreshThread.isAlive()) {
+            autoRefreshThread.interrupt(); // Interrupt the thread
+        }
+    }
+    public void refreshbuy(){
+        buyables.clear();
+        for (BuyRequest request : main.buyRequests) {
+            Player foundPlayer = LoginApp.playerDatabase.findbyName(request.getPlayerName());
+            if (foundPlayer != null) {
+                buyables.add(foundPlayer);
+            }
+        }
+        BuyTable.setItems(javafx.collections.FXCollections.observableArrayList(buyables));
+
+    }
+    public void cleanup() {
+        stopAutoRefreshBuy(); // Explicit cleanup method for resources
+    }
+    public void refreshSell(){
+        SellTable.setItems(javafx.collections.FXCollections.observableArrayList(sellables));
+    }
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -208,6 +246,7 @@ public class TransferMarket implements Initializable {
 
     public void BackButtonPressed(ActionEvent actionEvent) {
         try {
+            cleanup();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("MainMenu.fxml"));
             Parent root = loader.load();

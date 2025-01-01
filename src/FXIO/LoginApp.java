@@ -23,6 +23,7 @@ public class LoginApp extends Application {
     private SocketWrapper socketWrapper;
     public List<SellRequest> sellRequests=new ArrayList<>();
     public List<BuyRequest>buyRequests=new ArrayList<>();
+    public String username;
     public SocketWrapper getSocketWrapper() {
         return socketWrapper;
     }
@@ -135,7 +136,7 @@ public class LoginApp extends Application {
     public static void main(String[] args) {
         launch(args); // Launch the JavaFX application
         playerDatabase.load();
-        playerDatabase.printDatabase();
+        //playerDatabase.printDatabase();
     }
 
 

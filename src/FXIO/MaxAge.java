@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -19,27 +20,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-public class MaxHeight {
-    @FXML
+public class MaxAge {
     public TextField ClubNameField;
-    @FXML
+    public Button SearchButton;
+    public TableView MaxAgePlayers;
     public TableColumn NameColumn;
-    @FXML
     public TableColumn CountryColumn;
-    @FXML
     public TableColumn AgeColumn;
-    @FXML
     public TableColumn HeightColumn;
-    @FXML
     public TableColumn ClubColumn;
-    @FXML
     public TableColumn PositionColumn;
-    @FXML
     public TableColumn JerseyNumberColumn;
-    @FXML
     public TableColumn WeeklySalaryColumn;
-    @FXML
-    public TableView MaxHeightPlayers;
     private LoginApp main;
 
     @FXML
@@ -57,10 +49,10 @@ public class MaxHeight {
 
     public void SearchButtonPressed(ActionEvent actionEvent) {
         String ClubName = ClubNameField.getText();
-        PlayerDatabase max_height=LoginApp.playerDatabase.findMaxHeight(ClubName);
-        List<Player>MaxSallaryPlayers=max_height.getDatabase();
-        ObservableList<Player> data = FXCollections.observableList(MaxSallaryPlayers);
-        MaxHeightPlayers.setItems(data);
+        PlayerDatabase max_age=LoginApp.playerDatabase.findMaxAge(ClubName);
+        List<Player> MaxagePlayers=max_age.getDatabase();
+        ObservableList<Player> data = FXCollections.observableList(MaxagePlayers);
+        MaxAgePlayers.setItems(data);
     }
     public void setMain(LoginApp main) {
         this.main = main;

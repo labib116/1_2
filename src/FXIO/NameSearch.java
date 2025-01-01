@@ -4,6 +4,7 @@ import Database.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -37,13 +38,27 @@ public  class NameSearch {
     public Button BackButton;
     @FXML
     public Button SearchButton;
+    private LoginApp main;
 
     public void BackButtonPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("PlayerSearch");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("PlayerSearch.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            PlayerSearchController controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Main Menu");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void SearchButtonPressed(ActionEvent actionEvent) {
@@ -69,5 +84,8 @@ public  class NameSearch {
             }
             WeeklySalaryField.setText(String.valueOf(player.getWeekly_salary()));
         }
+    }
+    public void setMain(LoginApp main) {
+        this.main = main;
     }
 }

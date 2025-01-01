@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -39,6 +40,8 @@ public class PositionSearch {
     public TableColumn<Player, String> JerseyNumberColumn;
     @FXML
     public TableColumn<Player, Integer> WeeklySalaryColumn;
+    private LoginApp main;
+
     @FXML
     public void initialize() {
         NameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -75,10 +78,27 @@ public class PositionSearch {
     }
 
     public void BackPressed(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerSearch.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("PlayerSearch");
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("PlayerSearch.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            PlayerSearchController controller = loader.getController();
+            controller.setMain(main);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Player Search");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setMain(LoginApp main) {
+        this.main = main;
     }
 }

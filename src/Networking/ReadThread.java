@@ -53,24 +53,24 @@ public class ReadThread implements Runnable {
                         }
                     } else if (o instanceof BuyConfirmation) {
                         BuyConfirmation buyConfirmation = (BuyConfirmation) o;
-                        Player p=main.playerDatabase.findbyName(buyConfirmation.getPlayerName());
+                        Player p= LoginApp.playerDatabase.findbyName(buyConfirmation.getPlayerName());
                         main.playerDatabase.RemovePlayer(p.getName());
                         p.setClub(buyConfirmation.getNewClubName());
-                        if(buyables.contains(p)){
-                            main.buyRequests.remove(p);
+                        main.playerDatabase.addPlayer(p);
+                        if(buyConfirmation.getNewClubName().equals(main.username)){
+                            main.buyRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
                             buyables.remove(p);
+                            main.sellRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
+                            sellables.add(p);
                         }
-                        if(sellables.contains(p)){
+                        else if(buyConfirmation.getPreviousClubName().equals(main.username)){
+                            main.sellRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
                             sellables.remove(p);
                         }
-                        main.playerDatabase.addPlayer(p);
-                        Platform.runLater(() -> {
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Information");
-                            alert.setHeaderText("Buy Confirmation");
-                            alert.setContentText("Player " + buyConfirmation.getPlayerName() + " has been bought by " + buyConfirmation.getNewClubName());
-                        });
-
+                        else{
+                            main.buyRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
+                            buyables.remove(p);
+                        }
                     }
                 }
             }

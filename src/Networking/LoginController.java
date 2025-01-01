@@ -35,7 +35,9 @@ public class LoginController {
 
     @FXML
     void loginAction(ActionEvent event) {
+
         String userName = userText.getText();
+        main.username=userName;
         String password = passwordText.getText();
         LoginDTO loginDTO = new LoginDTO();
         loginDTO.setUserName(userName);
