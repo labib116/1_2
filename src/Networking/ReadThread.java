@@ -7,75 +7,41 @@ import DTO.SellRequest;
 import Database.Player;
 import FXIO.LoginApp;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 
 import static FXIO.TransferMarket.buyables;
-import static FXIO.TransferMarket.sellables;
+import static FXIO.TransferMarket.buyRequests;
+import static FXIO.TransferMarket.sellRequests;
 
 public class ReadThread implements Runnable {
-    private final Thread thr;
+    private final Thread thread;
     private final LoginApp main;
 
     public ReadThread(LoginApp main) {
         this.main = main;
-        this.thr = new Thread(this);
-        thr.start();
+        this.thread = new Thread(this);
+        thread.start();
     }
 
+    @Override
     public void run() {
         try {
             while (true) {
-                Object o = main.getSocketWrapper().read();
-                if (o != null) {
-                    if (o instanceof LoginDTO) {
-                        LoginDTO loginDTO = (LoginDTO) o;
-                        Platform.runLater(() -> {
-                            if (loginDTO.isStatus()) {
-                                try {
-                                    main.showMainMenu(loginDTO.getUserName());
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                main.showAlert();
-                            }
-                        });
-                    } else if (o instanceof SellRequest sellRequest) {
-                        BuyRequest buyRequest = new BuyRequest();
-                        buyRequest.setPlayerName(sellRequest.getPlayerName());
-                        buyRequest.setClubName(sellRequest.getClubName());
-                        buyRequest.setPrice(sellRequest.getPrice());
-                        main.buyRequests.add(buyRequest);
-                        for(BuyRequest br:main.buyRequests){
-                            System.out.println(br.getPlayerName());
-                        }
-                    } else if (o instanceof BuyConfirmation) {
-                        BuyConfirmation buyConfirmation = (BuyConfirmation) o;
-                        Player p= LoginApp.playerDatabase.findbyName(buyConfirmation.getPlayerName());
-                        main.playerDatabase.RemovePlayer(p.getName());
-                        p.setClub(buyConfirmation.getNewClubName());
-                        main.playerDatabase.addPlayer(p);
-                        if(buyConfirmation.getNewClubName().equals(main.username)){
-                            main.buyRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
-                            buyables.remove(p);
-                            main.sellRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
-                            sellables.add(p);
-                        }
-                        else if(buyConfirmation.getPreviousClubName().equals(main.username)){
-                            main.sellRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
-                            sellables.remove(p);
-                        }
-                        else{
-                            main.buyRequests.removeIf(request -> request.getPlayerName().equals(p.getName()));
-                            buyables.remove(p);
-                        }
+                Object message = main.getSocketWrapper().read();
+                if (message != null) {
+                    if (message instanceof LoginDTO loginDTO) {
+                        handleLoginDTO(loginDTO);
+                    } else if (message instanceof SellRequest sellRequest) {
+                        handleSellRequest(sellRequest);
+                    } else if (message instanceof BuyConfirmation buyConfirmation) {
+                        handleBuyConfirmation(buyConfirmation);
                     }
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error in ReadThread: " + e.getMessage());
+            System.err.println("Error in ReadThread: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 main.getSocketWrapper().closeConnection();
@@ -83,5 +49,78 @@ public class ReadThread implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void handleLoginDTO(LoginDTO loginDTO) {
+        Platform.runLater(() -> {
+            if (loginDTO.isStatus()) {
+                try {
+                    main.showMainMenu(loginDTO.getUserName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                main.showAlert();
+            }
+        });
+    }
+
+    private void handleSellRequest(SellRequest sellRequest) {
+        synchronized (buyRequests) {
+            BuyRequest buyRequest = new BuyRequest(sellRequest.getPlayerName(), sellRequest.getClubName(), sellRequest.getPrice());
+
+            if (!buyRequests.contains(buyRequest)) {
+                buyRequests.add(buyRequest);
+
+                Player player = LoginApp.playerDatabase.findbyName(sellRequest.getPlayerName());
+                if (player != null && !buyables.contains(player)) {
+                    buyables.add(player);
+                   // Platform.runLater(() -> FXIO.TransferMarket.refreshBuy());
+                } else {
+                    System.err.println("Player not found or already in buyables for SellRequest: " + sellRequest.getPlayerName());
+                }
+            }
+        }
+    }
+
+    private void handleBuyConfirmation(BuyConfirmation buyConfirmation) {
+        Player player = LoginApp.playerDatabase.findbyName(buyConfirmation.getPlayerName());
+        if (player == null) {
+            System.err.println("Player not found in database: " + buyConfirmation.getPlayerName());
+            return;
+        }
+
+        synchronized (sellRequests) {
+            synchronized (buyRequests) {
+                if (buyConfirmation.getNewClubName().equals(main.username)) {
+                    // Player bought by this club
+                    buyRequests.removeIf(request -> request.getPlayerName().equalsIgnoreCase(player.getName()));
+                    buyables.remove(player);
+                } else if (buyConfirmation.getPreviousClubName().equals(main.username)) {
+                    // Player sold by this club
+                    sellRequests.removeIf(request -> request.getPlayerName().equalsIgnoreCase(player.getName()));
+                } else {
+                    // Transaction between other clubs
+                    buyRequests.removeIf(request -> request.getPlayerName().equalsIgnoreCase(player.getName()));
+                    buyables.remove(player);
+                }
+            }
+        }
+
+        // Update player's club in the database
+        player.setClub(buyConfirmation.getNewClubName());
+        LoginApp.playerDatabase.RemovePlayer(player.getName());
+        LoginApp.playerDatabase.addPlayer(player);
+
+        /*Platform.runLater(() -> {
+            FXIO.TransferMarket.refreshBuy();
+            FXIO.TransferMarket.refreshSell();
+        });*/
+
+        System.out.println("BuyConfirmation processed for player: " + player.getName());
+    }
+
+    public boolean isAlive() {
+        return thread.isAlive();
     }
 }

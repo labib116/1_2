@@ -6,6 +6,14 @@ public class BuyConfirmation implements Serializable {
     private String playerName;
     private String PreviousClubName;
     private String newClubName;
+    public BuyConfirmation() {
+
+    }
+    public BuyConfirmation(String name, String previousClub, String loginClub) {
+        this.playerName=name;
+        this.PreviousClubName=previousClub;
+        this.newClubName=loginClub;
+    }
 
     public String getPlayerName() {
         return playerName;

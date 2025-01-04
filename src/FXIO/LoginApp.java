@@ -21,12 +21,13 @@ public class LoginApp extends Application {
     private Stage primaryStage;
     public static PlayerDatabase playerDatabase = new PlayerDatabase();
     private SocketWrapper socketWrapper;
-    public List<SellRequest> sellRequests=new ArrayList<>();
-    public List<BuyRequest>buyRequests=new ArrayList<>();
     public String username;
     public SocketWrapper getSocketWrapper() {
         return socketWrapper;
     }
+    private ReadThread readThread;
+    public static List<Player> sellables = new ArrayList<>();
+    public static List<Player> buyables = new ArrayList<>();
 
     public void showLoginPage() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -97,7 +98,10 @@ public class LoginApp extends Application {
         String serverAddress = "127.0.0.1";
         int serverPort = 33333;
         socketWrapper = new SocketWrapper(serverAddress, serverPort);
-        new ReadThread(this);
+        if (readThread == null || !readThread.isAlive()) {
+            readThread = new ReadThread(this);
+        }
+        //new ReadThread(this);
     }
     public void showAlert() {
         // Alert the user that the username and password are incorrect

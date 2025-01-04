@@ -6,6 +6,13 @@ public class BuyRequest {
     private String playerName;
     private String clubName;
     private int price;
+
+    public BuyRequest(String playerName, String clubName, int price) {
+        this.playerName = playerName;
+        this.clubName = clubName;
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

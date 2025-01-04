@@ -8,6 +8,16 @@ public class SellRequest implements Serializable {
     private String clubName;
     private int price;
 
+    public SellRequest(String name, String loginClub, int weeklySalary) {
+        this.playerName=name;
+        this.clubName=loginClub;
+        this.price=weeklySalary;
+    }
+
+    public SellRequest() {
+
+    }
+
     public String getPlayerName() {
         return playerName;
     }
@@ -16,14 +26,17 @@ public class SellRequest implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SellRequest that = (SellRequest) o;
-        return Objects.equals(playerName, that.playerName) &&
-                Objects.equals(clubName, that.clubName) && Objects.equals(price, that.price);
+        return price == that.price &&
+                Objects.equals(playerName, that.playerName) &&
+                Objects.equals(clubName, that.clubName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerName, clubName,price);
+        return Objects.hash(playerName, clubName, price);
     }
+
+
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;

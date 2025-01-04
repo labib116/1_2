@@ -43,7 +43,7 @@ public class TotalSallary {
             Parent root = loader.load();
 
             // Loading the controller
-            PlayerSearchController controller = loader.getController();
+            ClubSearch controller = loader.getController();
             controller.setMain(main);
 
             // Set the primary stage
