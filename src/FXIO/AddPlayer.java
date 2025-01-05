@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javax.lang.model.type.NullType;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import static FXIO.LoginApp.playerDatabase;
@@ -90,6 +91,8 @@ public class AddPlayer {
             Player p = new Player(playerName, age, country, height, club, position, jersey, (int) weeklySallary);
             playerDatabase.addPlayer(p);
             main.getSocketWrapper().write(p);
+            List<Player> players=playerDatabase.getDatabase();
+            playerDatabase.add_to_file(players);
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Success");
             successAlert.setHeaderText("Player added successfully");

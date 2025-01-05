@@ -17,6 +17,7 @@ public class ReadThreadServer implements Runnable {
     public HashMap<String,String>PlayerMap=new HashMap<>();
     public List<SocketWrapper> clientList=new ArrayList<>();
     public HashMap<SocketWrapper,String>clientMap=new HashMap<>();
+   // public List<String> TransferList=new ArrayList<>();
 
     public ReadThreadServer(HashMap<String, String> map, SocketWrapper socketWrapper,List clientList,HashMap<SocketWrapper,String>clientMap) {
         this.userMap = map;
@@ -33,22 +34,25 @@ public class ReadThreadServer implements Runnable {
                 Object o = socketWrapper.read();
                 if (o != null) {
                     if (o instanceof LoginDTO) {
-                        LoginDTO loginDTO = (LoginDTO) o;
-                        String password = userMap.get(loginDTO.getUserName());
-                        loginDTO.setStatus(loginDTO.getPassword().equals(password));
-                        System.out.println("Adding to clientMap: " + socketWrapper);
-                        synchronized (clientMap){
-                        clientMap.put(socketWrapper,loginDTO.getUserName());
+                        synchronized (this) {
+                            LoginDTO loginDTO = (LoginDTO) o;
+                            String password = userMap.get(loginDTO.getUserName());
+                            loginDTO.setStatus(loginDTO.getPassword().equals(password));
+                            System.out.println("Adding to clientMap: " + socketWrapper);
+                            synchronized (clientMap) {
+                                clientMap.put(socketWrapper, loginDTO.getUserName());
+                            }
+                            System.out.println("clientMap contents: " + clientMap);
+                            System.out.println("Login Successful for: " + loginDTO.getUserName());
+                            System.out.println("Login Successful");
+                            socketWrapper.write(loginDTO);
                         }
-                        System.out.println("clientMap contents: " + clientMap);
-                        System.out.println("Login Successful for: " + loginDTO.getUserName());
-                        System.out.println("Login Successful");
-                        socketWrapper.write(loginDTO);
                     }
                     if(o instanceof SellRequest){
                         System.out.println("Sell Request Received");
                         SellRequest sellRequest = (SellRequest) o;
                         PlayerMap.put(sellRequest.getPlayerName(),sellRequest.getClubName());
+                        //TransferList.add(sellRequest.getPlayerName());
                         for(SocketWrapper client:clientList){
                             if(client!=socketWrapper){System.out.println("Sell request forwarded");
                             client.write(sellRequest);
@@ -59,6 +63,7 @@ public class ReadThreadServer implements Runnable {
                     if(o instanceof BuyConfirmation){
                         System.out.println("Buy Confirmation Received");
                         BuyConfirmation buyConfirmation = (BuyConfirmation) o;
+                        //TransferList.remove(buyConfirmation.getPlayerName());
                         for(SocketWrapper client:clientList){
                             System.out.println("Buy Confirmation forwarded");
                             client.write(buyConfirmation);

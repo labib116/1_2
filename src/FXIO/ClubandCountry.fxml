@@ -25,9 +25,9 @@
                     <columns>
                         <TableColumn fx:id="NameColumn" prefWidth="122.66668951511383" text="Player Name" />
                         <TableColumn fx:id="CountryColumn" minWidth="15.0" prefWidth="101.99999237060547" text="Country" />
-                        <TableColumn fx:id="AgeColumn" prefWidth="43.33331298828125" text="Age" />
-                        <TableColumn fx:id="HeightColumn" prefWidth="76.6666259765625" text="Height" />
-                        <TableColumn fx:id="ClubColumn" prefWidth="163.33331298828125" text="Club" />
+                        <TableColumn fx:id="AgeColumn" prefWidth="50.00007629394531" text="Age" />
+                        <TableColumn fx:id="HeightColumn" prefWidth="80.6666259765625" text="Height" />
+                        <TableColumn fx:id="ClubColumn" prefWidth="152.66665649414062" text="Club" />
                         <TableColumn fx:id="PositionColumn" prefWidth="116.00006103515625" text="Position" />
                         <TableColumn fx:id="JerseyNumberColumn" minWidth="6.6666259765625" prefWidth="111.33331298828125" text="Jersey Number" />
                         <TableColumn fx:id="WeeklySalaryColumn" prefWidth="170.6666259765625" text="Weekly Sallary" />

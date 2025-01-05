@@ -9,6 +9,7 @@ import FXIO.LoginApp;
 import javafx.application.Platform;
 
 import java.io.IOException;
+import java.util.List;
 
 import static FXIO.TransferMarket.buyables;
 import static FXIO.TransferMarket.buyRequests;
@@ -148,6 +149,8 @@ public class ReadThread implements Runnable {
         player.setClub(buyConfirmation.getNewClubName());
         LoginApp.playerDatabase.RemovePlayer(player.getName());
         LoginApp.playerDatabase.addPlayer(player);
+        List<Player>new_players=LoginApp.playerDatabase.getDatabase();
+        LoginApp.playerDatabase.add_to_file(new_players);
 
         /*Platform.runLater(() -> {
             FXIO.TransferMarket.refreshBuy();
