@@ -3,6 +3,7 @@ package Networking;
 import DTO.BuyConfirmation;
 import DTO.LoginDTO;
 import DTO.SellRequest;
+import Database.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,6 +62,14 @@ public class ReadThreadServer implements Runnable {
                         for(SocketWrapper client:clientList){
                             System.out.println("Buy Confirmation forwarded");
                             client.write(buyConfirmation);
+                        }
+                    }
+                    if(o instanceof Player){
+                        for(SocketWrapper client:clientList){
+                            if(client!=socketWrapper) {
+                               // System.out.println("Player forwarded");
+                                client.write(o);
+                            }
                         }
                     }
                 }

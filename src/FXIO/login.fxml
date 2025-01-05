@@ -3,19 +3,81 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.LoginController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="938.0" prefWidth="982.0" styleClass="vbox" stylesheets="@../CSS/Login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.LoginController">
    <children>
-      <AnchorPane prefHeight="398.0" prefWidth="600.0">
+      <AnchorPane prefHeight="934.0" prefWidth="982.0">
          <children>
-            <TextField fx:id="NameField" alignment="TOP_CENTER" layoutX="225.0" layoutY="134.0" />
-            <Label layoutX="227.0" layoutY="104.0" text="Enter your Club Name here" />
-            <Label layoutX="231.0" layoutY="225.0" text="Enter Your Password Here" />
-            <Button fx:id="LoginButton" layoutX="275.0" layoutY="339.0" mnemonicParsing="false" onAction="#LoginButtonPressed" text="Login" />
-            <PasswordField fx:id="PasswordField" layoutX="233.0" layoutY="265.0" />
+            <ImageView fitHeight="750.0" fitWidth="1051.0" layoutX="-15.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/IPL_2016_Trophy.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="CSK" fitHeight="124.0" fitWidth="181.0" layoutX="71.0" layoutY="93.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/CSK.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <Label fx:id="SelectedClubLabel" layoutX="377.0" layoutY="26.0" text="No club selected" />
+            <Label layoutX="373.0" layoutY="754.0" text="Enter Your Password Here" />
+            <Button fx:id="LoginButton" layoutX="449.0" layoutY="855.0" mnemonicParsing="false" onAction="#LoginButtonPressed" text="Login" />
+            <PasswordField fx:id="PasswordField" layoutX="395.0" layoutY="806.0" />
+            <ImageView fx:id="DC" fitHeight="124.0" fitWidth="161.0" layoutX="301.0" layoutY="93.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/DC.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="GT" fitHeight="136.0" fitWidth="174.0" layoutX="529.0" layoutY="91.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/GT.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="KKR" fitHeight="128.0" fitWidth="150.0" layoutX="755.0" layoutY="91.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/KKR.jpg" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="LSG" fitHeight="117.0" fitWidth="187.0" layoutX="34.0" layoutY="318.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/LSG.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="MI" fitHeight="128.0" fitWidth="174.0" layoutX="266.0" layoutY="290.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/MI.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="PK" fitHeight="150.0" fitWidth="200.0" layoutX="549.0" layoutY="277.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/PK.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="RCB" fitHeight="150.0" fitWidth="200.0" layoutX="772.0" layoutY="263.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/RCB.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="RR" fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="487.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/RR.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SRH" fitHeight="150.0" fitWidth="200.0" layoutX="543.0" layoutY="487.0" onMouseClicked="#selectClub" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/SH.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="864.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.ClubandCountry">
+<VBox prefHeight="864.0" prefWidth="884.0" stylesheets="@../CSS/ClubaandCountrySearch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.ClubandCountry">
     <children>
         <AnchorPane prefHeight="643.0" prefWidth="715.0">
             <children>
@@ -39,7 +39,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="Country" layoutX="525.0" layoutY="128.0" promptText="Country" />
-                <Button fx:id="Backbutton" layoutX="26.0" layoutY="39.0" mnemonicParsing="false" onAction="#BackbuttonPressed" text="Back" />
+                <Button fx:id="Backbutton" layoutY="12.0" mnemonicParsing="false" onAction="#BackbuttonPressed" prefWidth="125.0" text="Back" />
             </children>
         </AnchorPane>
     </children>

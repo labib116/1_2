@@ -1,0 +1,107 @@
+/* Background color for the entire VBox */
+.vbox {
+    -fx-background-color: linear-gradient(to bottom, #658e65, #4b704b); /* Gradient background */
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0); /* Subtle shadow */
+    -fx-alignment: center;
+    -fx-spacing: 15px; /* Space between elements */
+}
+
+/* Background color for AnchorPane */
+.anchor-pane {
+    -fx-background-color: #f8f8f8; /* Light, clean grey background */
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.3, 2, 2); /* Light shadow */
+}
+
+/* Style for Labels */
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 16px; /* Slightly larger text for readability */
+    -fx-text-fill: #2c3e50; /* Dark text color */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0.3, 0, 0); /* Light text shadow */
+}
+
+/* Style for TextFields */
+.text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.95); /* Soft white background */
+    -fx-border-color: #34495e; /* Slightly lighter border */
+    -fx-border-radius: 8px; /* Rounded corners */
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.3, 0, 0); /* Subtle shadow */
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.text-field:focused {
+    -fx-border-color: #1abc9c; /* Highlighted border */
+    -fx-effect: dropshadow(gaussian, rgba(26, 188, 156, 0.5), 8, 0.6, 0, 0); /* Glow effect */
+}
+
+/* Style for ChoiceBox */
+.choice-box {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-border-color: #34495e;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.3, 0, 0);
+}
+
+/* Style for Buttons */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #1abc9c, #16a085); /* Modern gradient */
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10px; /* Rounded corners */
+    -fx-padding: 12px 25px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.3, 0, 0); /* Shadow for depth */
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #16a085, #1abc9c); /* Reverse gradient */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 15, 0.5, 0, 0); /* Enhanced shadow on hover */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05; /* Slight zoom effect */
+}
+
+.button:pressed {
+    -fx-background-color: #148f77; /* Darker tone on press */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0.2, 0, 0);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95; /* Slight compression */
+}
+
+/* Style for the "Back" button */
+#BackButton {
+    -fx-background-color: linear-gradient(to bottom, #e74c3c, #c0392b);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10px;
+    -fx-padding: 12px 25px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.3, 0, 0);
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+#BackButton:hover {
+    -fx-background-color: linear-gradient(to bottom, #c0392b, #e74c3c); /* Reverse gradient */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 15, 0.5, 0, 0);
+}
+
+#BackButton:pressed {
+    -fx-background-color: #992d22;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0.2, 0, 0);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}

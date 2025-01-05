@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import Database.PlayerDatabase;
 import javafx.stage.Stage;
@@ -40,15 +41,40 @@ public class AddPlayer {
     public TextField WeeklySallaryField;
     @FXML
     public Button AddButton;
+    @FXML
+    public ChoiceBox<String> PositionChoicebox;
+    @FXML
+    public ChoiceBox<String> ClubChoicebox;
     private LoginApp main;
+    @FXML
+    public void initialize(){
+        PositionChoicebox.getItems().addAll("Batsman", "Bowler", "Wicketkeeper", "Allrounder");
+        PositionChoicebox.setValue("Batsman");
+        ClubChoicebox.getItems().addAll(
+                "Mumbai Indians",
+                "Chennai Super Kings",
+                "Delhi Capitals",
+                "Kolkata Knight Riders",
+                "Royal Challengers Bangalore",
+                "Sunrisers Hyderabad",
+                "Rajasthan Royals",
+                "Punjab Kings",
+                "Lucknow Super Giants",
+                "Gujarat Titans"
+        );
+        ClubChoicebox.setValue("Mumbai Indians");
 
-    public void AddButtonPressed(ActionEvent actionEvent) {
+    }
+
+
+
+    public void AddButtonPressed(ActionEvent actionEvent) throws IOException {
         String playerName = PlayerNameField.getText();
         String country = CountryField.getText();
         int age = Integer.parseInt(AgeField.getText());
         double height= Double.parseDouble(HeightField.getText());
-        String club = ClubField.getText();
-        String position = PositionField.getText();
+        String club = ClubChoicebox.getValue();
+        String position = PositionChoicebox.getValue();
         String jerseyInput = JerseyField.getText();
         int jersey;
 
@@ -63,6 +89,7 @@ public class AddPlayer {
 
             Player p = new Player(playerName, age, country, height, club, position, jersey, (int) weeklySallary);
             playerDatabase.addPlayer(p);
+            main.getSocketWrapper().write(p);
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Success");
             successAlert.setHeaderText("Player added successfully");

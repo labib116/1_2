@@ -1,0 +1,100 @@
+/* Global Styling */
+.root {
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-background-color: linear-gradient(to bottom, #2a2a72, #009ffd);
+    -fx-padding: 20px;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 2);
+}
+
+/* VBox Styling */
+.vbox {
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+/* Label Styling */
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 4, 0.5, 0, 1);
+    -fx-underline: true;
+}
+
+/* Table Styling */
+.table-view {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 2);
+    -fx-selection-bar: #009ffd;
+    -fx-cell-hover-color: #2a2a72;
+}
+
+.table-column {
+    -fx-text-fill: #2a2a72;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-border-color: transparent;
+}
+
+.table-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #009ffd, #2a2a72);
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #00c6ff, #0072ff);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.6, 1, 1);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #0072ff, #0059b3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 10, 0.7, 1, 1);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #0059b3, #003d80);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0, 0);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* Back Button Specific */
+#Back {
+    -fx-background-color: linear-gradient(to bottom, #ff5e62, #ff9966);
+}
+
+#Back:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff4500, #ff6347);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.7, 2, 2);
+}
+
+/* Custom Effects */
+.table-cell:hover {
+    -fx-background-color: rgba(0, 159, 253, 0.2);
+    -fx-text-fill: #2a2a72;
+    -fx-font-weight: bold;
+}
+
+.vbox:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.8), 20, 0.8, 0, 0);
+}

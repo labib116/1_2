@@ -1,0 +1,81 @@
+/* Global styles */
+.root {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-base: #6acaa8;
+}
+
+/* VBox styling */
+.vbox {
+    -fx-background-color: linear-gradient(to bottom, #2E8B57, #407c6a);
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 20, 0.5, 0, 0);
+    -fx-alignment: center;
+}
+
+/* Button styling (common for all buttons except MainMenuButton) */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #4CAF50, #388E3C);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0);
+    -fx-transition: all 0.3s ease-in-out;
+
+    /* Dynamically adjust button size based on content */
+    -fx-min-width: 200px;
+    -fx-max-width: 400px;
+    -fx-pref-width: USE_COMPUTED_SIZE;
+    -fx-min-height: 50px;
+}
+
+/* Button hover effect */
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #45a049, #2e7d32);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 15, 0.6, 0, 4);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Button pressed effect */
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #3e8e41, #2e7d32);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0.3, 0, 2);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* MainMenuButton specific styles */
+#MainMenuButton {
+    -fx-background-color: linear-gradient(to bottom, #FF5722, #E64A19);
+    -fx-font-size: 18px; /* Slightly larger text for prominence */
+    -fx-padding: 15px 25px;
+}
+
+#MainMenuButton:hover {
+    -fx-background-color: linear-gradient(to bottom, #F4511E, #D84315);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 15, 0.6, 0, 4);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+#MainMenuButton:pressed {
+    -fx-background-color: linear-gradient(to bottom, #E64A19, #BF360C);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0.3, 0, 2);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* AnchorPane adjustments */
+.anchor-pane {
+    -fx-padding: 20px;
+}
+
+/* Smooth transition for VBox hover effect */
+.vbox:hover {
+    -fx-background-color: linear-gradient(to bottom, #2E8B57, #325c4a);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0.5, 0, 0);
+}

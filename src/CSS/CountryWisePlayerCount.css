@@ -1,0 +1,97 @@
+/* AnchorPane Styling */
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom, #2c3e50, #34495e); /* Stylish dark gradient */
+    -fx-padding: 15px;
+    -fx-border-color: #ecf0f1;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+/* BarChart Styling */
+.bar-chart {
+    -fx-background-color: transparent; /* Keep BarChart background transparent */
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 10, 0.5, 0, 5);
+}
+
+.bar-chart .chart-legend {
+    -fx-font-size: 14px;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-text-fill: #ecf0f1; /* Soft white legend text */
+}
+
+.bar-chart .chart-title {
+    -fx-font-size: 24px;
+    -fx-font-family: "Arial Black", sans-serif;
+    -fx-text-fill: #f39c12; /* Golden title text */
+    -fx-effect: dropshadow(gaussian, rgba(243, 156, 18, 0.8), 10, 0.5, 0, 2);
+}
+
+/* Category Axis Styling */
+.category-axis .axis-label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Tahoma", sans-serif;
+    -fx-text-fill: #1abc9c; /* Mint green axis label */
+}
+
+.category-axis .tick-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* White tick labels */
+}
+
+/* Number Axis Styling */
+.number-axis .axis-label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Tahoma", sans-serif;
+    -fx-text-fill: #3498db; /* Sky blue axis label */
+}
+
+.number-axis .tick-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* White tick labels */
+}
+
+/* Bar Colors (Solid Colors for Compatibility) */
+.default-color0.chart-bar {
+    -fx-bar-fill: #e74c3c; /* Fiery red */
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #2ecc71; /* Vibrant green */
+}
+
+.default-color2.chart-bar {
+    -fx-bar-fill: #3498db; /* Calm blue */
+}
+
+.default-color3.chart-bar {
+    -fx-bar-fill: #9b59b6; /* Regal purple */
+}
+
+.default-color4.chart-bar {
+    -fx-bar-fill: #f1c40f; /* Bright yellow */
+}
+
+/* Button Styling */
+#BackButton {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Black", sans-serif;
+    -fx-text-fill: #ecf0f1; /* Soft white text */
+    -fx-background-color: linear-gradient(to bottom, #16a085, #1abc9c); /* Aquamarine gradient */
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0.3, 0, 3);
+}
+
+#BackButton:hover {
+    -fx-background-color: linear-gradient(to bottom, #1abc9c, #16a085); /* Reverse gradient on hover */
+    -fx-effect: dropshadow(gaussian, rgba(22, 160, 133, 0.8), 10, 0.5, 0, 5);
+}

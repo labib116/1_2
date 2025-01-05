@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="864.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.SallaryRange">
+<VBox prefHeight="864.0" prefWidth="884.0" stylesheets="@../CSS/SallaryRange.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.SallaryRange">
     <children>
         <AnchorPane prefHeight="643.0" prefWidth="715.0">
             <children>
@@ -32,7 +32,7 @@
                         <TableColumn fx:id="WeeklySalaryColumn" prefWidth="170.6666259765625" text="Weekly Sallary" />
                     </columns>
                 </TableView>
-            <Label layoutX="247.0" layoutY="123.0" text="Enter MAximum Sallary:">
+            <Label layoutX="247.0" layoutY="123.0" text="Enter Maximum Sallary:">
                <font>
                   <Font size="24.0" />
                </font>

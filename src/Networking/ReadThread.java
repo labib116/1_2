@@ -24,7 +24,7 @@ public class ReadThread implements Runnable {
         thread.start();
     }
 
-    @Override
+    /*@Override
     public void run() {
         try {
             while (true) {
@@ -37,6 +37,8 @@ public class ReadThread implements Runnable {
                     } else if (message instanceof BuyConfirmation buyConfirmation) {
                         handleBuyConfirmation(buyConfirmation);
                     }
+                    else if (message instanceof Player player){
+                        handlePlayer(player);
                 }
             }
         } catch (Exception e) {
@@ -48,6 +50,41 @@ public class ReadThread implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }*/
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                Object message = main.getSocketWrapper().read();
+                if (message != null) {
+                    if (message instanceof LoginDTO loginDTO) {
+                        handleLoginDTO(loginDTO);
+                    } else if (message instanceof SellRequest sellRequest) {
+                        handleSellRequest(sellRequest);
+                    } else if (message instanceof BuyConfirmation buyConfirmation) {
+                        handleBuyConfirmation(buyConfirmation);
+                    } else if (message instanceof Player player) {
+                        handlePlayer(player);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error in ReadThread: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                main.getSocketWrapper().closeConnection();
+            } catch (IOException e) {
+                System.err.println("Error closing socket: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    private void handlePlayer(Player player){
+        if(LoginApp.playerDatabase.findbyName(player.getName())==null){
+            LoginApp.playerDatabase.addPlayer(player);
+            System.out.println("Player added to database: "+player.getName());
         }
     }
 

@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.TransferMarket">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="754.0" stylesheets="@../CSS/TransferMarket.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.TransferMarket">
     <children>
         <!-- Buy Table Section -->
         <AnchorPane prefHeight="360.0" prefWidth="554.0">
             <children>
-                <Label layoutX="215.0" layoutY="10.0" text="Buy Market">
+                <Label layoutX="266.0" layoutY="14.0" text="Buy Market">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <TableView fx:id="BuyTable" layoutX="30.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0">
+                <TableView fx:id="BuyTable" layoutX="30.0" layoutY="50.0" prefHeight="250.0" prefWidth="625.0">
                     <columns>
                         <TableColumn fx:id="BuyPlayerNameColumn" prefWidth="200.0" text="Player Name" />
                         <TableColumn fx:id="BuyClubColumn" prefWidth="150.0" text="Club" />
-                        <TableColumn fx:id="BuySalaryColumn" prefWidth="100.0" text="Weekly Salary" />
-                        <TableColumn fx:id="BuyActionColumn" prefWidth="50.0" text="Action" />
+                        <TableColumn fx:id="BuySalaryColumn" prefWidth="158.0" text="Weekly Salary" />
+                        <TableColumn fx:id="BuyActionColumn" prefWidth="112.0" text="Action" />
                     </columns>
                 </TableView>
             <Button fx:id="Back" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
@@ -33,17 +33,17 @@
         <!-- Sell Table Section -->
         <AnchorPane prefHeight="360.0" prefWidth="554.0">
             <children>
-                <Label layoutX="215.0" layoutY="10.0" text="Sell Market">
+                <Label layoutX="270.0" layoutY="14.0" text="Sell Market">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <TableView fx:id="SellTable" layoutX="30.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0">
+                <TableView fx:id="SellTable" layoutX="30.0" layoutY="50.0" prefHeight="250.0" prefWidth="625.0">
                     <columns>
                         <TableColumn fx:id="SellPlayerNameColumn" prefWidth="200.0" text="Player Name" />
-                        <TableColumn fx:id="SellClubColumn" prefWidth="150.0" text="Club" />
-                        <TableColumn fx:id="SellSalaryColumn" prefWidth="100.0" text="Weekly Salary" />
-                        <TableColumn fx:id="SellActionColumn" prefWidth="50.0" text="Action" />
+                        <TableColumn fx:id="SellClubColumn" prefWidth="114.0" text="Club" />
+                        <TableColumn fx:id="SellSalaryColumn" prefWidth="195.3333740234375" text="Weekly Salary" />
+                        <TableColumn fx:id="SellActionColumn" prefWidth="113.333251953125" text="Action" />
                     </columns>
                 </TableView>
             </children>

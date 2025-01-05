@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -22,10 +23,26 @@ public class TotalSallary {
     public TextArea OutputTextArea;
     @FXML
     public Button SearchButton;
+    public ChoiceBox<String> ClubChoiceBox;
     private LoginApp main;
+    public void initialize(){
+        ClubChoiceBox.getItems().addAll(
+                "Mumbai Indians",
+                "Chennai Super Kings",
+                "Delhi Capitals",
+                "Kolkata Knight Riders",
+                "Royal Challengers Bangalore",
+                "Sunrisers Hyderabad",
+                "Rajasthan Royals",
+                "Punjab Kings",
+                "Lucknow Super Giants",
+                "Gujarat Titans"
+        );
+        ClubChoiceBox.setValue("Mumbai Indians");
+    }
 
     public void SearchButtonPressed(ActionEvent actionEvent) {
-        String ClubName = ClubNameField.getText();
+        String ClubName = ClubChoiceBox.getValue();
         long total_sallary=playerDatabase.find_total_sallary(ClubName);
         OutputTextArea.setText("Total Salary of "+ClubName+" is "+total_sallary+"$");
 

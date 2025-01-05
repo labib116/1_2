@@ -55,16 +55,26 @@ public class PlayerSearchController {
     }
 
     public void CountrywisePlayerCountButtonPressed(ActionEvent actionEvent) throws IOException {
-        HashMap<String, Integer> players = LoginApp.playerDatabase.findByCountry();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Countrywise Player Count");
-        alert.setHeaderText("Countrywise Player Count");
-        StringBuilder content = new StringBuilder();
-        for (String country : players.keySet()) {
-            content.append(String.format("%-20s : %-10d\n", country, players.get(country)));
+        try {
+            //cleanup();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("CountrwisePlayerCount.fxml"));
+            Parent root = loader.load();
+
+            // Loading the controller
+            HashMap<String,Integer>players=LoginApp.playerDatabase.findByCountry();
+            CountrwisePlayerCount controller = loader.getController();
+            controller.setMain(main);
+            controller.setCountryData(players);
+
+            // Set the primary stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Countrywise Player Count");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        alert.setContentText(content.toString());
-        alert.showAndWait();
     }
     public void SallaryRangeButtonPressed(ActionEvent actionEvent) throws IOException {
         try {

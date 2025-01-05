@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="715.0" prefWidth="877.0" stylesheets="@../CSS/CountryWisePlayerCount.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXIO.CountrwisePlayerCount">
+    <children>
+        <BarChart fx:id="countryBarChart" layoutX="65.0" layoutY="80.0" prefHeight="597.0" prefWidth="771.0">
+            <xAxis>
+                <CategoryAxis fx:id="xAxis" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" />
+            </yAxis>
+        </BarChart>
+      <Button fx:id="BackButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#BackButtonPressed" text="Back" />
+    </children>
+</AnchorPane>

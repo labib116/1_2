@@ -40,10 +40,14 @@ public class PositionSearch {
     public TableColumn<Player, String> JerseyNumberColumn;
     @FXML
     public TableColumn<Player, Integer> WeeklySalaryColumn;
+    @FXML
+    public ChoiceBox<String> PositionChoiceBox;
     private LoginApp main;
 
     @FXML
     public void initialize() {
+        PositionChoiceBox.getItems().addAll("Batsman", "Bowler", "Wicketkeeper", "Allrounder");
+        PositionChoiceBox.setValue("Batsman");
         NameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         CountryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
         AgeColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
@@ -61,7 +65,7 @@ public class PositionSearch {
 
     public void SearchButtonPressed(ActionEvent actionEvent) {
         try {
-            String position= this.position.getText();
+            String position= PositionChoiceBox.getValue();
 
 
 
